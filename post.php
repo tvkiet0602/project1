@@ -1,28 +1,23 @@
 <?php
     session_start();
+    include 'connect.php';
     if(!isset($_SESSION["username"])){
         header("loation: ./login.php");
-    }
-    header("Content-Type: text/html; charset-UTFF-8");
-    if(!isset($con)){
-        include 'connect.php';
-    }
-    $ID = $_GET['id'];
-    $qr = mysqli_query($con, "SELECT * FROM users WHERE user_id='$ID'") or die("Lỗi truy vấn");
-    $r = mysqli_fetch_array($qr);
 
-    $user_id = $_POST['user_id'];
-    $title = $_POST['title'];
-    $content = $_POST['content'];
-    $image_url = $_POST['image_url'];
-    $is_private = $_POST['is_private'];
-    $post_date = $_POST['post_date'];
-    if(isset($_SESSION["username"])){
-        $user_id = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM users WHERE user_id = '$user_id'") or die ("Lỗi truy vấn user_id"));
-        $user_id = $user_id['ID'];
-        $result = mysqli_query($con, "INSERT INTO blog_posts(user_id, title, content, image_url, is_private, post_date) 
-            VALUES ('$user_id', '$title', '$content' '$image_url', '$is_private', '$post_date')") or die ("Lỗi truy vấn blog_posts");
     }
+//    else{
+//        $qr = mysqli_query($con, "SELECT * FROM users");
+//        $ID = $_GET['id'];
+//        $qr = mysqli_query($con, "SELECT * FROM users WHERE user_id='$ID'") or die("Lỗi truy vấn");
+//    }
+    header("Content-Type: text/html; charset-UTFF-8");
+    $ID = $_GET['id'];
+    //    if(!isset($con)){
+    //        include 'connect.php';
+    //    }
+    //    $ID = $_GET['id'];
+    //    $qr = mysqli_query($con, "SELECT * FROM users WHERE user_id='$ID'") or die("Lỗi truy vấn");
+    //    $r = mysqli_fetch_array($qr);
 
 ?>
 
@@ -78,7 +73,12 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul  class="nav navbar-nav navbar-right">
                     <li><a style="color: #007bff;" href="#">Trang chủ</a></li>
-                    <li><a style="color: #007bff;" href="#">Tạo bài viết</a></li>
+                    <?php
+                        $result = mysqli_query($con, "SELECT * FROM users WHERE user_id = '$ID'" );
+                        $qr = mysqli_fetch_array($result);
+                        echo "<li><a style='color: #007bff;' href='post.php?id=".$qr['ID']."'>Tạo bài viết</a></li>";
+                    ?>
+                    <li><a style="color: #007bff;" href="post.php?id='.$r['ID'].'">Tạo bài viết</a></li>
                     <li><a style="color: #007bff;" href="#">Đăng xuất</a></li>
                     <!-- <li><a href="#">Profile</a></li>
                     <li><a href="#">Help</a></li> -->
@@ -96,7 +96,7 @@
 
     <!--Container-->
     <div id="container" >
-        <form action="post.php" method="POST">
+        <form action="post_process.php" method="POST">
             <div class="row" style="width: auto;">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="panel panel-primary" style="margin-left: 10px;">
