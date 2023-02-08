@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Đăng ký</title>
+    <style>
+        *{
+            padding: 0;
+            box-sizing: border-box;
+            margin: 0;
+        }
+        html{
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+        #dangky{
+            text-align: center;
+            margin-left: 35%;
+            margin-top: 10%;
+            border: 2px solid rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            background-color: #FAFBFC;
+            border: 2px solid #DFE1E6;
+            box-shadow: rgb(0 0 0 / 10%) 0 0 10px;
+            padding-bottom: 5em;
+            width: 30%;
+            position: relative;
+            font-size: 14px;
+        }
+
+        .signup input{
+            padding: 10px 15px;
+            margin: 0px 10px 30px;
+            width: 90%;
+        }
+
+        .sub{
+            background-color: #5AAC44;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 0, 0, 0);
+            cursor: pointer;
+            font-size: 15px;
+            color: #fff;
+            font-weight: bold;
+
+        }
+
+        body{
+            background: cornsilk;
+        }
+    </style>
+
+
+</head>
+<body>
+<section style="color: red; font-weight: italic; text-align: center;"><?= isset ($alert) ? $alert : '' ?></section>
+<form id="signup-form" method="POST" action="dangnhap.php" >
+    <div id="dangky">
+        <div class="email-pwd">
+            <h1 style="margin-top: 40px;">ĐĂNG KÝ</h1><br>
+            <h5><i>Vui lòng nhập vào biểu mẫu bên dưới để đăng ký</i></h5>
+            <div class="signup">
+                <input type="text"  style="margin-top: 50px;" name="username"  placeholder="Tên tài khoản" required><br>
+                <input type="password"  name="password"  placeholder="Mật khẩu" required><br>
+                <input type="password" placeholder="Nhập lại mật khẩu" name="psw-repeat" required>
+
+            </div>
+            <input class="sub" type="submit" style="padding: 5px;  width: 85%;" name="submit" value="Đăng ký">
+        </div>
+    </div>
+</form>
+</body>
+</html>
