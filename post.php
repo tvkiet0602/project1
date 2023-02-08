@@ -11,7 +11,7 @@
 //        $qr = mysqli_query($con, "SELECT * FROM users WHERE user_id='$ID'") or die("Lỗi truy vấn");
 //    }
     header("Content-Type: text/html; charset-UTFF-8");
-    $ID = $_GET['id'];
+//    $ID = $_GET['id'];
     //    if(!isset($con)){
     //        include 'connect.php';
     //    }
@@ -73,12 +73,13 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul  class="nav navbar-nav navbar-right">
                     <li><a style="color: #007bff;" href="#">Trang chủ</a></li>
-                    <?php
-                        $result = mysqli_query($con, "SELECT * FROM users WHERE user_id = '$ID'" );
-                        $qr = mysqli_fetch_array($result);
-                        echo "<li><a style='color: #007bff;' href='post.php?id=".$qr['ID']."'>Tạo bài viết</a></li>";
-                    ?>
-                    <li><a style="color: #007bff;" href="post.php?id='.$r['ID'].'">Tạo bài viết</a></li>
+<!--                    --><?php
+//                    $ID = $_GET['id'];
+//                        $re = mysqli_query($con, "SELECT * FROM users WHERE user_id = '$ID'" );
+//                        $a = mysqli_fetch_array($re);
+//                        echo "<li><a style='color: #007bff;' href='post.php?id=".$a['ID']."'>Tạo bài viết</a></li>";
+//                    ?>
+                    <li><a style="color: #007bff;" href="post.php">Tạo bài viết</a></li>
                     <li><a style="color: #007bff;" href="#">Đăng xuất</a></li>
                     <!-- <li><a href="#">Profile</a></li>
                     <li><a href="#">Help</a></li> -->
@@ -113,12 +114,18 @@
                             <tr >
                                 <td>
                                     <div class="btn-group" style="text-align: center;">
-                                        <button type="button" class="ti-world" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span>
-                                        </button>
+<!--                                        <button type="button" class="ti-world" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span>-->
+<!--                                        </button>-->
+                                        <select class="form-control" name = "is_private">
+                                            <option selected>Công khai</option>
+                                            <option>Riêng tư</option>
+                                        </select>
                                         <ul class="dropdown-menu">
                                             <li><a href="#">Công khai</a></li>
                                             <li><a href="#">Riêng tư</a></li>
                                         </ul>
+
+
                                     </div>
                                 </td>
                             </tr>
@@ -138,7 +145,7 @@
                                     </dl>
                                     <dl>
                                         <dd>
-                                            <input type="file"  id="file-upload" />
+                                            <input type="file"  id="file-upload" name = "image_url" />
                                         </dd>
                                     </dl>
                                 </div>
