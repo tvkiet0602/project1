@@ -16,17 +16,11 @@ if(isset($_POST['submit'])){
         $result = mysqli_query($con, $sql);
         $num_rows = mysqli_num_rows($result);
         if($num_rows == 0){
-            // echo ("Email or Password không đúng, vui lòng nhập lại! <br /> <a href='javascript: history.go(-1)'>Trở lại</a>");
-            // exit;
+
             $alert = "Username hoặc Password không đúng, vui lòng nhập lại!";
         }
         else{
             $result = mysqli_fetch_array($result);
-            // if($result['quyen'] == "Admin"){
-            //     $_SESSION['username'] = $username;
-            //     header('location: ');
-            // }
-            // else{
                 $_SESSION['username'] = $username;
                 header('location: ./index.php');
             // }
