@@ -2,7 +2,7 @@
 <?php
 session_start();
 header("Content-Type: text/html; charset-UTF-8");
-include '.php';
+include 'connect.php';
 if(isset($_POST['submit'])){
     $username = $_POST['username'];
     $password = md5($_POST['password']);
