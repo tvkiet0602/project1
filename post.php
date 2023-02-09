@@ -62,17 +62,11 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
                 <a style="color: #007bff; font-size:xx-large;" class="navbar-brand" href="#">MyBlog</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul  class="nav navbar-nav navbar-right">
-                    <li><a style="color: #007bff;" href="#">Trang chủ</a></li>
+                    <li><a style="color: #007bff;" href="index.php">Trang chủ</a></li>
 <!--                    --><?php
 //                    $ID = $_GET['id'];
 //                        $re = mysqli_query($con, "SELECT * FROM users WHERE user_id = '$ID'" );
@@ -114,18 +108,10 @@
                             <tr >
                                 <td>
                                     <div class="btn-group" style="text-align: center;">
-<!--                                        <button type="button" class="ti-world" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span>-->
-<!--                                        </button>-->
-                                        <select class="form-control" name = "is_private">
+                                        <select class="form-control" name="is_private">
                                             <option selected>Công khai</option>
                                             <option>Riêng tư</option>
                                         </select>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">Công khai</a></li>
-                                            <li><a href="#">Riêng tư</a></li>
-                                        </ul>
-
-
                                     </div>
                                 </td>
                             </tr>
