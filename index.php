@@ -77,7 +77,7 @@
             <div>
                 <div class="col-xs-11" >
                     <table style="width: 100%; margin-left: 40px;" >
-                    <?php $qr =
+                    <?php
                     $result= mysqli_query($con, "SELECT * FROM blog_posts, users  WHERE blog_posts.user_id = users.user_id order by post_date ASC ") or die ("Lỗi hiển thị");
                     while ($r = mysqli_fetch_array($result)){
 
@@ -115,7 +115,7 @@
                                             </tr>
                                             <tr>
                                             <td>
-                                            <p><a class='btn btn-default' href='detail.php' role='button'>Xem chi tiết &raquo;</a></p>
+                                            <p><a class='btn btn-default' href='detail.php?id=".$r['post_id']."' role='button'>Xem chi tiết &raquo;</a></p>
                                                 </td>
                                     </tr>
                                     
