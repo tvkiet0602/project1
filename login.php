@@ -26,7 +26,7 @@ if(isset($_POST['submit'])){
         else{
             $result = mysqli_fetch_array($result);
                 $_SESSION['username'] = $username;
-                header('location: ./index.html');
+                header('location: ./index.php');
         }
     }
 }
