@@ -2,17 +2,12 @@
     session_start();
     header("Content-Type: text/html; charset-UTF-8");
     include 'connect.php';
-    if(isset($_POST['submit'])){
-        echo "123";
-    }
-    else{echo"456";}
     $username = $_POST['username'];
     $password = $_POST['password'];
     $fullname = $_POST['fullname'];
     $email = $_POST['email'];
     $avatar   = $_FILES['avatar']['name'];
     $avt_temp = $_FILES['avatar']['name_temp'];
-    echo $username;
     $qr = mysqli_query($con, "INSERT INTO users (username, password, fullname, avatar, email) VALUES('$username', '$password', '$fullname', '$avt_temp', '$email')") or die ("Lỗi truy vấn");
     $result = mysqli_fetch_array($qr);
     move_uploaded_file($avt_temp, './asset./css/img/'.$avt_temp);
@@ -73,13 +68,10 @@
             /*background: cornsilk;*/
         }
     </style>
-
-
-
 </head>
 <body>
 <section style="color: red; text-align: center;"><?= isset ($alert) ? $alert : '' ?></section>
-<form id="signup-form" method="POST" action="signup.php" enctype="multipart/form-data" >
+<form id="signup-form" method="GET" action="signup.php" enctype="multipart/form-data" >
     <div id="dangky">
         <div class="email-pwd">
             <h1 style="margin-top: 40px;">ĐĂNG KÝ</h1><br>
