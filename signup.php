@@ -1,9 +1,26 @@
+<?
+    session_start();
+    header("Content-Type: text/html; charset-UTF-8");
+    include 'connect.php';
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $fullname = $_POST['fullname'];
+    $avatar = $_POST['avatar'];
+    $email = $_POST['email'];
+    $qr = mysqli_query($con, "INSERT INTO users (username, password, fullname, avatar, email) VALUES('$username', '$password', '$fullname', '$avatar', '$email')") or die ("Lỗi truy vấn");
+    $result = mysqli_fetch_array($qr);
+    if($result){
+        header ("location: ./login.php")
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
     <title>Trang Đăng ký</title>
     <style>
         *{
@@ -53,23 +70,31 @@
     </style>
 
 
+
 </head>
 <body>
 <section style="color: red; font-weight: italic; text-align: center;"><?= isset ($alert) ? $alert : '' ?></section>
-<form id="signup-form" method="POST" action="dangnhap.php" >
+<form id="signup-form" method="POST" action="signup.php" >
     <div id="dangky">
         <div class="email-pwd">
             <h1 style="margin-top: 40px;">ĐĂNG KÝ</h1><br>
-            <h5><i>Vui lòng nhập vào biểu mẫu bên dưới để đăng ký</i></h5>
+            <h5><i>Vui lòng nhập vào biểu mẫu bên dưới để đăng ký tài khoản</i></h5>
             <div class="signup">
-                <input type="text"  style="margin-top: 50px;" name="username"  placeholder="Tên tài khoản" required><br>
+                <input type="text"  style="margin-top: 50px;" name="fullname"  placeholder="Họ và tên" required>
+                <input type="text" name="username"  placeholder="Tên tài khoản" required><br>
                 <input type="password"  name="password"  placeholder="Mật khẩu" required><br>
                 <input type="password" placeholder="Nhập lại mật khẩu" name="psw-repeat" required>
+                <input type="text"  name="email"  placeholder="Email" required><br>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Ảnh đại diện</label>
+                    <input class="form-control" type="file" id="formFile">
+                </div>
 
             </div>
             <input class="sub" type="submit" style="padding: 5px;  width: 85%;" name="submit" value="Đăng ký">
         </div>
     </div>
 </form>
+
 </body>
 </html>
