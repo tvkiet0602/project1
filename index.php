@@ -84,20 +84,49 @@
             background: white;
             margin-top: 10px;
         }
-        /* Bố cục linh hoạt: các cột xếp chồng lên nhau thay vì cạnh nhau khi màn hình có chiều rộng dưới 700px */
-        @media screen and (max-width: 700px) {
-            .leftcolumn, .rightcolumn {
-                width: 100%;    padding: 0;
-            }
-        }
-        /* Bố cục linh hoạt: Thanh menu điều hướng xếp chồng lên nhau thay vì cạnh nhaukhi màn hình có chiều rộng dưới 300px  */
-        @media screen and (max-width: 300px) {
-            .topnav a {
-                float: none;    width: 100%;
-            }
-        }
+
         #row button{
             margin-left: 30px;
+        }
+        /* thiết lập style cho thẻ a */
+        .pagination a {
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+            border: 1px solid #ddd;
+
+        }
+        /* thêm màu nền khi người dùng hover vào class không active */
+        .pagination a:hover{
+            background-color: #ddd;
+        }
+        .pagination {
+            display: inline-block;
+        }
+        .pagination a.active {
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            border: 1px solid #4CAF50;
+        }
+
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+            border-radius: 5px;
+        }
+        .pagination a:first-child {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+
+        .pagination a:last-child {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+        .center{
+            text-align: center;
+            margin-top: 20px;
         }
         
     </style>
@@ -134,7 +163,14 @@
               <button type="button" class="btn btn-primary">BÀI VIẾT MỚI</button>
               <table >
                   <?php
-                      $result= mysqli_query($con, "SELECT * FROM blog_posts, users  WHERE blog_posts.user_id = users.user_id order by post_date ASC ") or die ("Lỗi hiển thị");
+                        $number = !empty($_GET['per_page'])?$_GET['per_page']:3;
+                        $current_page = !empty($_GET['page'])?$_GET['page']:1; //Trang hiện tại
+                        $offset = ($current_page - 1) * $number;
+                      $result= mysqli_query($con, "SELECT * FROM blog_posts, users  WHERE blog_posts.user_id = users.user_id order by post_date ASC LIMIT ".$number." OFFSET ".$offset." ") or die ("Lỗi hiển thị");
+                      $total = mysqli_query($con, "SELECT * FROM blog_posts");
+//                      var_dump($total);
+                      $total = $total->num_rows;
+                      $pages = ceil($total/$number);
                       while ($r = mysqli_fetch_array($result)){
                           echo "
                               <tr>
@@ -166,23 +202,24 @@
                               </tr>";
                       }?>
               </table>
-              <div class="footer">
-                  <nav aria-label="...">
-                      <ul class="pagination">
-                          <li class="page-item disabled">
-                              <a class="page-link" href="#" tabindex="-1">Previous</a>
-                          </li>
-                          <li class="page-item active">
-                          <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
-                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <div class="center">
+                  <div class="pagination">
+                      <?php
+                      echo "<a href='#' >&laquo;</a>";
+                            for($list=1; $list<=$pages; $list++){
+                                if($list != $current_page){
+                            ?>
+                                <a href='?per_page=<?=$number?>&page=<?=$list?>'><?=$list?></a>
+                            <?php
+                                }
+                                else{
+                                    echo "<strong class='btn btn-primary '>".$list."</strong>";
+                                }
+                            }
+                              echo"<a href='#'>&raquo;</a>";
+                            ?>
 
-                          </li>
-                          <li class="page-item"><a class="page-link" href="#">3</a></li>
-                          <li class="page-item">
-                              <a class="page-link" href="#">Next</a>
-                          </li>
-                      </ul>
-                  </nav>
+                  </div>
               </div>
           </div>
       </div>
