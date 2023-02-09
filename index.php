@@ -69,75 +69,82 @@
           
     <br><br><br>
 <!--Container-->
-<div id="row">
-    <div class="col-md-7 col-md-offset-1" style="height: auto;">
-    <button style="margin: 20px 0px 30px 70px; type="button" class="btn btn-primary">BÀI VIẾT MỚI</button>
-        <div class="container">
-            <!-- Example row of columns -->
-            <div>
-                <div class="col-xs-11" >
-                    <table style="width: 100%; margin-left: 40px;" >
-                    <?php $qr =
-                    $result= mysqli_query($con, "SELECT * FROM blog_posts, users  WHERE blog_posts.user_id = users.user_id order by post_date ASC ") or die ("Lỗi hiển thị");
-                    while ($r = mysqli_fetch_array($result)){
-
-//                        echo "<h3>".$r["title"]."</h3>";
-
-                        echo "
-                                <tr>
-                                    <td rowspan='4'>
-                                        <img src='".$r["image_url"]."' alt='...' style='width: 250px; height: 150px; '>
-                                        
-                                    </td>
-                               
-                                     <td style='float: left;margin-bottom: -10px;'>
-                                        <p><b style='font-size: 20px;'>".$r["title"]."</b></p><br>
-                                    </td>
-                                   
-                                  
-                                    
-                                </tr>
-                                <tr>
-                                 <td style='margin-bottom: -10px;'>
-                                        <h5><em>Ngày đăng: ".$r["post_date"]." --- Người tạo: ".$r["username"]."</em></h5><em></td>
-                                </tr>
-                                <tr>
-                                    <td style='float: left;'>
-                                        <h5>";
+    <div id="row">
+        <div class="col-md-8 col-md-offset-1" style="height: auto; display: inline; ">
+        <button style="margin: 20px 0px 30px 70px; type="button" class="btn btn-primary">BÀI VIẾT MỚI</button>
+<!--            <div class="col-xs-10" >-->
+                <table border="3" style="width: 80%; margin-left: 40px;" >
+                <?php $qr =
+                $result= mysqli_query($con, "SELECT * FROM blog_posts, users  WHERE blog_posts.user_id = users.user_id order by post_date ASC ") or die ("Lỗi hiển thị");
+                while ($r = mysqli_fetch_array($result)){
+                    echo "
+                        <tr>
+                            <td rowspan='4'>
+                                <img src='".$r["image_url"]."' alt='...' style='width: 250px; height: 150px; '>
+                            </td>
+                             <td style='float: left;margin-bottom: -10px;'>
+                                <p><b style='font-size: 20px;'>".$r["title"]."</b></p><br>
+                            </td>
+                        </tr>
+                        <tr>
+                             <td style='margin-bottom: -10px;'>
+                                <h5><em>Ngày đăng: ".$r["post_date"]." --- Người tạo: ".$r["username"]."</em></h5><em>
+                             </td>
+                        </tr>
+                        <tr>
+                            <td style='float: left;'>
+                                <h5>";
                                 if(strlen($r["content"]) > 100)
                                     $cOutput = mb_substr($r["content"], 0, 99, "UTF-8");
                                     echo $cOutput . "...";
                                     echo "</h5>
-                                                </td>
-                                                <td> </td><td> </td>
-                                      
-                                                
-                                            </tr>
-                                            <tr>
-                                            <td>
-                                            <p><a class='btn btn-default' href='detail.php' role='button'>Xem chi tiết &raquo;</a></p>
-                                                </td>
-                                    </tr>
-                                    
-                                     
-                                    ";
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><a class='btn btn-default' href='detail.php' role='button'>Xem chi tiết &raquo;</a></p>
+                            </td>
+                        </tr>";
+                }?>
+                </div>
 
-                    }
-                                    ?>
-<!--                    <td rowspan='100%' width='20%'>-->
+    <div class="col-md-10 col-md-offset-11" style=" display: inline; background-color: #1b6d85; width: 30% ">
+        <h3 >Người dùng</h3>
+        <p>
+            <img src='assets/css/img/1.jpg' alt='...' class='img-circle'><a style='text-decoration: none; color: black;'>&emsp;Trần Văn Kiệt</a>
+        </p>
+        <h3 >Người dùng</h3>
+        <p>
+            <img src='assets/css/img/1.jpg' alt='...' class='img-circle'><a style='text-decoration: none; color: black;'>&emsp;Trần Văn Kiệt</a>
+        </p>
+        <h3 >Người dùng</h3>
+        <p>
+            <img src='assets/css/img/1.jpg' alt='...' class='img-circle'><a style='text-decoration: none; color: black;'>&emsp;Trần Văn Kiệt</a>
+        </p>
+        <h3 >Người dùng</h3>
+        <p>
+            <img src='assets/css/img/1.jpg' alt='...' class='img-circle'><a style='text-decoration: none; color: black;'>&emsp;Trần Văn Kiệt</a>
+        </p>
+        <h3 >Người dùng</h3>
+        <p>
+            <img src='assets/css/img/1.jpg' alt='...' class='img-circle'><a style='text-decoration: none; color: black;'>&emsp;Trần Văn Kiệt</a>
+        </p>
+    </div>
+        </div>
+
+<!--            <td rowspan='100%' width='20%'>-->
 <!---->
-<!--                        <div >-->
-<!--                            <h3 >Người dùng</h3>-->
-<!--                            <p>-->
-<!--                                <img src='assets/css/img/avatar2.jpg' alt='...' class='img-circle'><a style='text-decoration: none; color: black;'>&emsp;Trần Văn Kiệt</a>-->
-<!--                            </p>-->
+<!--                <div >-->
+<!--                    <h3 >Người dùng</h3>-->
+<!--                    <p>-->
+<!--                        <img src='assets/css/img/avatar2.jpg' alt='...' class='img-circle'><a style='text-decoration: none; color: black;'>&emsp;Trần Văn Kiệt</a>-->
+<!--                    </p>-->
 <!---->
-<!--                        </div>-->
+<!--                </div>-->
 <!---->
-<!--                    </td>-->
-                        </div>
-                    </div>
-            </div>
+<!--            </td>-->
+
+
 
 </body>
 </html>
