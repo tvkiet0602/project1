@@ -115,7 +115,7 @@
                                             </tr>
                                             <tr>
                                             <td>
-                                            <p><a class='btn btn-default' href='post.php' role='button'>Xem chi tiết &raquo;</a></p>
+                                            <p><a class='btn btn-default' href='detail.php' role='button'>Xem chi tiết &raquo;</a></p>
                                                 </td>
                                     </tr>
                                     
