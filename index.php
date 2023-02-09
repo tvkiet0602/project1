@@ -24,8 +24,8 @@
             background: rgba(199, 199, 199, 0.418);
         }
         #row img{
-            width: 40px;
-            height: 40px;
+            width: 200px;
+            height: 150px;
         }
         #row p{
             font-size:medium;
@@ -36,10 +36,69 @@
             padding: 4px;
             color: black;
         }
-        #row .col-sm-2{
+        #row .col-sm-2 {
             width: 20em;
-            
+        }
 
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial;
+            padding: 10px;
+            background: #e9d8f4;
+        }
+        /* Header/Blog Title */
+        .header {
+            padding: 10px;
+            text-align: center;
+            background: white;
+            color: #58257b;
+        }
+
+        .leftcolumn {
+            float: left;
+            width: 75%;
+        }
+        /* Cột phải */
+        .rightcolumn {
+            float: left;
+            width: 25%;
+            background-color: #e9d8f4;
+            padding-left: 20px;
+        }
+        .fakeimg {
+            background-color: #baa1cc;
+            width: 100%;  padding: 20px;}
+        /* Thêm định dạng thẻ cho bài viết */
+        .card {
+            background-color: white;
+            padding: 20px;
+            margin-top: 20px;}
+        /* Clear float khác sau các cột */
+
+        /* Footer */
+        .footer {
+            padding: 10px;
+            text-align: center;
+            background: white;
+            margin-top: 10px;
+        }
+        /* Bố cục linh hoạt: các cột xếp chồng lên nhau thay vì cạnh nhau khi màn hình có chiều rộng dưới 700px */
+        @media screen and (max-width: 700px) {
+            .leftcolumn, .rightcolumn {
+                width: 100%;    padding: 0;
+            }
+        }
+        /* Bố cục linh hoạt: Thanh menu điều hướng xếp chồng lên nhau thay vì cạnh nhaukhi màn hình có chiều rộng dưới 300px  */
+        @media screen and (max-width: 300px) {
+            .topnav a {
+                float: none;    width: 100%;
+            }
+        }
+        #row button{
+            margin-left: 30px;
+        }
         
     </style>
 </head>
@@ -54,9 +113,8 @@
               <div id="navbar" class="navbar-collapse collapse">
                 <ul  class="nav navbar-nav navbar-right">
                   <li><a style="color: #007bff;" href="#">Trang chủ</a></li>
-                  <li><a style="color: #007bff;" href="#">Đăng xuất</a></li>
-                  <!-- <li><a href="#">Profile</a></li>
-                  <li><a href="#">Help</a></li> -->
+                    <li><a style="color: #007bff;" href="post.php">Tạo bài viết</a></li>
+                    <li><a style="color: #007bff;" href="#">Đăng xuất</a></li>
                 </ul>
                 <form class="navbar-form navbar-right">
                   <input type="text" class="form-control" placeholder="Search...">
@@ -64,87 +122,100 @@
               </div>
             </div>
           </nav>
-        <div> 
+        <div>
     </div>
-          
+
     <br><br><br>
+
 <!--Container-->
-    <div id="row">
-        <div class="col-md-8 col-md-offset-1" style="height: auto; display: inline; ">
-        <button style="margin: 20px 0px 30px 70px; type="button" class="btn btn-primary">BÀI VIẾT MỚI</button>
-<!--            <div class="col-xs-10" >-->
-                <table border="3" style="width: 80%; margin-left: 40px;" >
-                <?php $qr =
-                $result= mysqli_query($con, "SELECT * FROM blog_posts, users  WHERE blog_posts.user_id = users.user_id order by post_date ASC ") or die ("Lỗi hiển thị");
-                while ($r = mysqli_fetch_array($result)){
-                    echo "
-                        <tr>
-                            <td rowspan='4'>
-                                <img src='".$r["image_url"]."' alt='...' style='width: 250px; height: 150px; '>
-                            </td>
-                             <td style='float: left;margin-bottom: -10px;'>
-                                <p><b style='font-size: 20px;'>".$r["title"]."</b></p><br>
-                            </td>
-                        </tr>
-                        <tr>
-                             <td style='margin-bottom: -10px;'>
-                                <h5><em>Ngày đăng: ".$r["post_date"]." --- Người tạo: ".$r["username"]."</em></h5><em>
-                             </td>
-                        </tr>
-                        <tr>
-                            <td style='float: left;'>
-                                <h5>";
-                                if(strlen($r["content"]) > 100)
-                                    $cOutput = mb_substr($r["content"], 0, 99, "UTF-8");
-                                    echo $cOutput . "...";
-                                    echo "</h5>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p><a class='btn btn-default' href='detail.php' role='button'>Xem chi tiết &raquo;</a></p>
-                            </td>
-                        </tr>";
-                }?>
+<div id="row">
+      <div class="leftcolumn">
+          <div class="card" style="margin: 0px 100px 0px 150px;">
+              <button type="button" class="btn btn-primary">BÀI VIẾT MỚI</button>
+              <table >
+                  <?php
+                      $result= mysqli_query($con, "SELECT * FROM blog_posts, users  WHERE blog_posts.user_id = users.user_id order by post_date ASC ") or die ("Lỗi hiển thị");
+                      while ($r = mysqli_fetch_array($result)){
+                          echo "
+                              <tr>
+                                  <td rowspan='4'>
+                                      <img src='".$r["image_url"]."' alt='Ảnh bài viết' vspace='20px' hspace='30px'  >
+                                  </td>
+                                   <td style='font-size: 20px;'>
+                                      <p><b >".$r["title"]."</b></p><br>
+                                  </td>
+                              </tr>
+                              <tr>
+                                   <td style=''>
+                                      <h5><em>Ngày đăng: ".$r["post_date"]." --- Người tạo: ".$r["username"]."</em></h5><em>
+                                   </td>
+                              </tr>
+                              <tr>
+                                  <td style=''>
+                                      <h5>";
+                          if(strlen($r["content"]) > 100)
+                              $cOutput = mb_substr($r["content"], 0, 99, "UTF-8");
+                          echo $cOutput . "...";
+                          echo "</h5>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td>
+                                      <p><a class='btn btn-default' href='detail.php' role='button'>Xem chi tiết &raquo;</a></p>
+                                  </td>
+                              </tr>";
+                      }?>
+              </table>
+              <div class="footer">
+                  <nav aria-label="...">
+                      <ul class="pagination">
+                          <li class="page-item disabled">
+                              <a class="page-link" href="#" tabindex="-1">Previous</a>
+                          </li>
+                          <li class="page-item active">
+                          <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item">
+                              <a class="page-link" href="#">Next</a>
+                          </li>
+                      </ul>
+                  </nav>
+              </div>
+          </div>
+      </div>
+<!--        User-->
+        <div class="rightcolumn" style="margin-left: 0px;">
+
+            <div class="card" style="margin: 0px 0px;">
+                <h3>Người dùng</h3>
+                <div class="fakeimg">
+                    <p>
+                        <?php
+                        $qr= mysqli_query($con, "SELECT * FROM users ") or die ("Lỗi user");
+                        while ($re = mysqli_fetch_array($qr)){
+                                echo "
+                                    <p>
+                                        <img src='".$re["avatar"]."' alt='...' class='img-circle' style='width: 60px; height: 60px;'>
+                                        <a href='post_user.php?id=".$re['user_id']."' style='text-decoration: none; color: black;'>&emsp;".$re["fullname"]."</a>
+//                                    </p>";
+                            }
+                        ?>
+                    </p>
                 </div>
-
-    <div class="col-md-10 col-md-offset-11" style=" display: inline; background-color: #1b6d85; width: 30% ">
-        <h3 >Người dùng</h3>
-        <p>
-            <img src='assets/css/img/1.jpg' alt='...' class='img-circle'><a style='text-decoration: none; color: black;'>&emsp;Trần Văn Kiệt</a>
-        </p>
-        <h3 >Người dùng</h3>
-        <p>
-            <img src='assets/css/img/1.jpg' alt='...' class='img-circle'><a style='text-decoration: none; color: black;'>&emsp;Trần Văn Kiệt</a>
-        </p>
-        <h3 >Người dùng</h3>
-        <p>
-            <img src='assets/css/img/1.jpg' alt='...' class='img-circle'><a style='text-decoration: none; color: black;'>&emsp;Trần Văn Kiệt</a>
-        </p>
-        <h3 >Người dùng</h3>
-        <p>
-            <img src='assets/css/img/1.jpg' alt='...' class='img-circle'><a style='text-decoration: none; color: black;'>&emsp;Trần Văn Kiệt</a>
-        </p>
-        <h3 >Người dùng</h3>
-        <p>
-            <img src='assets/css/img/1.jpg' alt='...' class='img-circle'><a style='text-decoration: none; color: black;'>&emsp;Trần Văn Kiệt</a>
-        </p>
-    </div>
+            </div>
+<!--            <div class="card">-->
+<!--                <h3>Follow Me</h3>-->
+<!--                <p>Facebook</p>-->
+<!--                <p>YouTube</p>-->
+<!--            </div>-->
         </div>
-
-<!--            <td rowspan='100%' width='20%'>-->
-<!---->
-<!--                <div >-->
-<!--                    <h3 >Người dùng</h3>-->
-<!--                    <p>-->
-<!--                        <img src='assets/css/img/avatar2.jpg' alt='...' class='img-circle'><a style='text-decoration: none; color: black;'>&emsp;Trần Văn Kiệt</a>-->
-<!--                    </p>-->
-<!---->
-<!--                </div>-->
-<!---->
-<!--            </td>-->
-
+    </div>
+    </div>
 
 
 </body>
 </html>
+
