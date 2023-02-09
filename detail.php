@@ -88,8 +88,8 @@
                                         <tr>
                                             <td height: auto;>
                                                 <p><b style='font-size: 30px;'>".$r["title"]."</b></p>
-                                                <h4><em>Ngày đăng: ".$r["post_date"]." </em></h4>
-                                                 <h4><em>Người tạo: ".$r["username"]."</em></h4><br></td>
+                                                <h4><em>Ngày đăng: ".$r["post_date"]." </em></h4> 
+                                                 <h4><em>Người tạo: ".$r["fullname"]."</em></h4><br></td>
                                             </td>
                                             <td rowspan='4'>
                                                

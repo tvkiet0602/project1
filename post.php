@@ -3,7 +3,6 @@
     include 'connect.php';
     if(!isset($_SESSION["username"])){
         header("loation: ./login.php");
-
     }
 //    else{
 //        $qr = mysqli_query($con, "SELECT * FROM users");
@@ -11,6 +10,7 @@
 //        $qr = mysqli_query($con, "SELECT * FROM users WHERE user_id='$ID'") or die("Lỗi truy vấn");
 //    }
     header("Content-Type: text/html; charset-UTFF-8");
+
 //    $ID = $_GET['id'];
     //    if(!isset($con)){
     //        include 'connect.php';
@@ -109,8 +109,8 @@
                                 <td>
                                     <div class="btn-group" style="text-align: center;">
                                         <select class="form-control" name="is_private">
-                                            <option selected>Công khai</option>
-                                            <option>Riêng tư</option>
+                                            <option selected value="0">Công khai</option>
+                                            <option value="1">Riêng tư</option>
                                         </select>
                                     </div>
                                 </td>

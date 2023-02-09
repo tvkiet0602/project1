@@ -8,17 +8,31 @@
     $content = $_POST['content'];
     $image_url = $_POST['image_url'];
     $is_private = $_POST['is_private'];
-//    $post_date = $_POST['post_date'];
-    $now = date_create()->format('Y-m-d H:i:s');
-    $post_date = $now;
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
+    $post_date = date('Y-m-d h:i:s');
+    if(isset($_SESSION["username"])){
+        $qr= mysqli_query($con, "SELECT * FROM blog_posts, users  WHERE blog_posts.user_id = users.user_id ") or die ("Lỗi nhận user_id");
+        $r = mysqli_fetch_array($qr);
+        $id = $r['user_id'];
+        $result = mysqli_query($con, "INSERT INTO blog_posts(user_id, title, content, image_url, is_private, post_date)
+            VALUES ('$id', '$title', '$content', '$image_url', '$is_private', '$post_date' )") or die ("Lỗi truy vấn blog_posts");
 
-    $user_id = mysqli_query($con, "SELECT * FROM users u JOIN blog_posts b ON u.user_id = b.user_id ") or die ("Lỗi truy vấn user_id");
-    $result = mysqli_query($con, "INSERT INTO blog_posts(user_id, title, content, image_url, is_private, post_date)
-    VALUES ('$user_id', '$title', '$content' '$image_url', '$is_private', '$now' )") or die ("Lỗi truy vấn blog_posts");
-
-    if ($result){
-//        header("location: ./post.php");
-        echo"jkjjj";
+        if ($result) {
+            header("location: ./index.php");
+        }
     }
+
+//        if($r['username'] == $_SESSION['$username']) {
+//            $get_userid = $r['user_id'];
+
+////
+////        }
+//    }
+
+
+
+//    $user_id = mysqli_query($con, "SELECT * FROM users u JOIN blog_posts b ON u.user_id = b.user_id ") or die ("Lỗi truy vấn user_id");
+//
+
 
 ?>

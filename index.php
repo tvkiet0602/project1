@@ -53,7 +53,8 @@
               </div>
               <div id="navbar" class="navbar-collapse collapse">
                 <ul  class="nav navbar-nav navbar-right">
-                  <li><a style="color: #007bff;" href="#">Trang chủ</a></li>
+                  <li><a style="color: #007bff;" href="index.php">Trang chủ</a></li>
+                    <li><a style="color: #007bff;" href="post.php">Tạo bài viết</a></li>
                   <li><a style="color: #007bff;" href="#">Đăng xuất</a></li>
                   <!-- <li><a href="#">Profile</a></li>
                   <li><a href="#">Help</a></li> -->
@@ -99,7 +100,7 @@
                                 </tr>
                                 <tr>
                                  <td style='margin-bottom: -10px;'>
-                                        <h5><em>Ngày đăng: ".$r["post_date"]." --- Người tạo: ".$r["username"]."</em></h5><em></td>
+                                        <h5><em>Ngày đăng: ".$r["post_date"]." --- Người tạo: ".$r["fullname"]."</em></h5><em></td>
                                 </tr>
                                 <tr>
                                     <td style='float: left;'>
