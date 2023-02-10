@@ -2,14 +2,15 @@
     session_start();
     header("Content-Type: text/html; charset-UTF-8");
     include 'connect.php';
+    $user_id = $_POST['user_id'];
     $username = $_POST['username'];
     $password = $_POST['password'];
     $fullname = $_POST['fullname'];
     $email = $_POST['email'];
     $avatar   = $_FILES['avatar']['name'];
     $avt_temp = $_FILES['avatar']['name_temp'];
-    $qr = mysqli_query($con, "INSERT INTO users (username, password, fullname, avatar, email) VALUES('$username', '$password', '$fullname', '$avt_temp', '$email')") or die ("Lỗi truy vấn");
-    $result = mysqli_fetch_array($qr);
+    $result = mysqli_query($con, "INSERT INTO users (username, password, fullname, avatar, email) VALUES('$username', '$password', '$fullname', '$avt_temp', '$email')") or die ("Lỗi truy vấn");
+//    $result = mysqli_fetch_array($qr);
     move_uploaded_file($avt_temp, './asset./css/img/'.$avt_temp);
 
     if($result){
