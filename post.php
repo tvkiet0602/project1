@@ -24,7 +24,7 @@
             background: rgba(199, 199, 199, 0.418);
         }
         #row img{
-            width: 40px;
+            width: 50px;
             height: 40px;
         }
         #row p{
@@ -53,16 +53,8 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul  class="nav navbar-nav navbar-right">
                     <li><a style="color: #007bff;" href="index.php">Trang chủ</a></li>
-<!--                    --><?php
-//                    $ID = $_GET['id'];
-//                        $re = mysqli_query($con, "SELECT * FROM users WHERE user_id = '$ID'" );
-//                        $a = mysqli_fetch_array($re);
-//                        echo "<li><a style='color: #007bff;' href='post.php?id=".$a['ID']."'>Tạo bài viết</a></li>";
-//                    ?>
                     <li><a style="color: #007bff;" href="post.php">Tạo bài viết</a></li>
                     <li><a style="color: #007bff;" href="#">Đăng xuất</a></li>
-                    <!-- <li><a href="#">Profile</a></li>
-                    <li><a href="#">Help</a></li> -->
                 </ul>
                 <form class="navbar-form navbar-right">
                     <input type="text" class="form-control" placeholder="Search...">
@@ -82,16 +74,22 @@
                 <div class="col-md-6 col-md-offset-3">
                     <div class="panel panel-primary" style="margin-left: 10px;">
                         <div class="panel-heading" ><b style="text-align: left; height: 50px; font-size: 20px;">TẠO BÀI VIẾT MỚI</b><button  class="btn btn-info" type="submit" style="float: right;">Đăng bài</button></div>
+                            <?php
+                            if(isset($_SESSION['username'])) {
+                                $sql = mysqli_query($con, "SELECT * FROM users");
+                                $r = mysqli_fetch_array($sql);
+                            }
+                            ?>
                         <table>
                             <tr>
                                 <th rowspan="2">
-                                    <img src="assets/css/img/avatar1.jpg" alt="..." class="img-circle" style=" width: 70px; height: 70px; margin: 10px;">
+                                    <img src="<?=$r['avatar']?>" alt="..." class="img-circle" style=" width: 70px; height: 70px; margin: 10px;">
                                 </th>
                                 <td>
-                                    <b style="font-size: 18px;">Trần Văn Kiệt</b>
+                                    <b style="font-size: 18px;"><?=$r['fullname']?></b>
                                 </td>
                             </tr>
-                            <tr >
+                            <tr>
                                 <td>
                                     <div class="btn-group" style="text-align: center;">
                                         <select class="form-control" name="is_private">
@@ -117,7 +115,12 @@
                                     </dl>
                                     <dl>
                                         <dd>
-                                            <input type="file"  id="file-upload" name = "image_url" />
+<!--                                            <input type="file" id="file-upload" name = "image_url" />-->
+                                            <form action="upload.php" method="post" enctype="multipart/form-data">
+                                                <label for ="fileSelect"> Tải hình ảnh: </label>
+                                                <input type="file" name="image_url" id = "fileSelect">
+                                                <p> <strong> Lưu ý: </strong> Chỉ cho phép các định dạng .jpg, .jpeg, .gif, .png với kích thước tối đa là 5 MB. </p>
+                                            </form>
                                         </dd>
                                     </dl>
                                 </div>

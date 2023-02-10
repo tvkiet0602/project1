@@ -6,12 +6,13 @@
     header("Content-Type: text/html; charset-UTF-8");
     include 'connect.php';
     $post_id=$_GET['id'];
+    $time = date('Y-m-d h:i:s');
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
     if(isset($_POST['content'])){
         $content = $_POST['content'];
         if(isset($_SESSION['username'])){
-            $user_id =  mysqli_fetch_array(mysqli_query($con, "SELECT * FROM users WHERE username='".$_SESSION['username']."'")) or die("Lỗi truy vấn user_id");
+            $user_id =  mysqli_fetch_array(mysqli_query($con, "SELECT * FROM users")) or die("Lỗi truy vấn user_id");
             $user_id = $user_id['user_id'];
-
                 $result = mysqli_query($con, "INSERT INTO comment(user_id, post_id, content, time) 
                                     VALUES ('$user_id', '$post_id', '$post_id', '$time')") or die("Lỗi truy vấn thêm bình luận");
 
@@ -71,8 +72,6 @@
                     <li><a style="color: #007bff;" href="index.php">Trang chủ</a></li>
                     <li><a style="color: #007bff;" href="post.php">Tạo bài viết</a></li>
                     <li><a style="color: #007bff;" href="logout.php">Đăng xuất</a></li>
-                    <!-- <li><a href="#">Profile</a></li>
-                    <li><a href="#">Help</a></li> -->
                 </ul>
                 <form class="navbar-form navbar-right">
                     <input type="text" class="form-control" placeholder="Search...">
@@ -142,16 +141,13 @@
                                 <form method="POST">
                                     <div class="input-group" style="height:auto;">
                                         <!-- <div class="input-group"> -->
-                                        <input type="text"  name="comment" class="form-control" autocomplete="off" placeholder="Nhập nhận xét của bạn...">
+                                        <input type="text"  name="content" class="form-control" autocomplete="off" placeholder="Nhập nhận xét của bạn...">
                                         <span class="input-group-btn" >
                                         <input type="submit" class="btn btn-default">
                                         </span>
                                     </div>
                                 </form>
                                 <?php
-
-                                $time = date('Y-m-d h:i:s');
-                                date_default_timezone_set('Asia/Ho_Chi_Minh');
 
                                  $comment = mysqli_query ($con, "SELECT * FROM users u, comment_posts c, blog_posts WHERE u.user_id=c.user_id, b.post_id=c.post_id, post_id=".$_GET['id']) or die ("Lỗi truy vấn bình luận");
                                 if(mysqli_num_rows($comment) == 0){

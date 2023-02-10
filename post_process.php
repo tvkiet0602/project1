@@ -23,17 +23,4 @@
         }
     }
 
-//        if($r['username'] == $_SESSION['$username']) {
-//            $get_userid = $r['user_id'];
-
-////
-////        }
-//    }
-
-
-
-//    $user_id = mysqli_query($con, "SELECT * FROM users u JOIN blog_posts b ON u.user_id = b.user_id ") or die ("Lỗi truy vấn user_id");
-//
-
-
 ?>
