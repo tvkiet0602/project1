@@ -73,7 +73,7 @@
     <!--Container-->
     <div id="row">
         <div class="col-md-7 col-md-offset-1" style="height: auto;">
-            <button style="margin: 20px 0px 30px 70px;" type="button" class="btn btn-primary">BÀI VIẾT</button>
+            <p><a  style='font-size: 16px; margin: 20px 0px 30px 70px;' class='btn btn-default' href='index.php'  role='button'>&nbsp; &laquo; Quay lại &nbsp;&nbsp; </a></p>
             <div class="container">
                 <!-- Example row of columns -->
                 <div>
@@ -87,7 +87,18 @@
                                         echo "
                                         <tr>
                                             <td height: auto;>
-                                                <p><b style='font-size: 30px;'>".$r["title"]."</b></p>
+                                                <p><b style='font-size: 30px; display: inline; float: left'>".$r["title"]."</b></p>
+                                                <form>
+                                                    <div class='btn-group' style='text-align: center; display: inline; float: right'>
+                                                        <select class='form-control' name='is_private'>";
+                                                        if($r['is_private'] == 0){
+                                                            echo "<option value=0 >Công khai</option>
+                                                                    <option value=1 >Riêng tư</option>";
+                                                        }else echo "<option value=1 >Riêng tư</option>
+                                                                    <option value=0 >Công khai</option>";
+                                                         echo "</select>
+                                                    </div><br><br>
+                                                </form>
                                                 <h4><em>Ngày đăng: ".$r["post_date"]." </em></h4> 
                                                  <h4><em>Người tạo: ".$r["fullname"]."</em></h4><br></td>
                                             </td>
@@ -101,17 +112,27 @@
                                                 <img src='".$r["image_url"]."' alt='...' style='width: 500px; height: 300px; margin-right: auto; margin-left: auto; display: block;'>  
                                                  <p style='font-size: 20px; text-align: justify;'>".$r["content"]."</p>
                                               </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p><a  style='font-size: 16px; ' class='btn btn-default' href='index.php'  role='button'>&nbsp; &laquo; Quay lại &nbsp;&nbsp; </a></p>
-                                            </td>
                                         </tr>";
                                     }
                                 }
 
                             ?>
                         </table>
+                        <div class="col-md-9 col-md-offset-1" style="margin-left: 160px; margin-top: 50px;">
+                            <div class="panel panel-primary" >
+                                <div class="panel-heading" >
+                                    <div class="panel-body" style="padding: 0px; height: 20px;">
+                                        <b >Phản hồi</b>
+                                    </div>
+                                </div>
+                                <form method="POST">
+                                    <div class="input-group" style="height:auto;">
+                                        <!-- <div class="input-group"> -->
+                                        <input type="text"  name="binhluan" class="form-control" autocomplete="off" placeholder="Hãy viết phản hồi của bạn ...">
+                                        <span class="input-group-btn" >
+                                <input type="submit" class="btn btn-default">
+                            </span>
+                                    </div>
                     </div>
                 </div>
             </div>

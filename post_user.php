@@ -150,7 +150,8 @@ include 'connect.php';
                                       <img src='".$r["image_url"]."' alt='Ảnh bài viết' vspace='20px' hspace='30px'  >
                                   </td>
                                    <td style='font-size: 20px;'>
-                                      <p><b >".$r["title"]."</b></p><br>
+                                      <p><b >".$r["title"].'</b></p><br>
+                                      
                                   </td>
                               </tr>
                               <tr>
@@ -169,7 +170,7 @@ include 'connect.php';
                               </tr>
                               <tr>
                                   <td>
-                                      <p><a class='btn btn-default' href='detail.php' role='button'>Xem chi tiết &raquo;</a></p>
+                                      <p><a class='btn btn-default' href='detail.php?id=".$r['post_id']."' role='button'>Xem chi tiết &raquo;</a></p>
                                   </td>
                               </tr>";
                         }
