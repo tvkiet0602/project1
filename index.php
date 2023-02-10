@@ -141,7 +141,7 @@
               </div>
               <div id="navbar" class="navbar-collapse collapse">
                 <ul  class="nav navbar-nav navbar-right">
-                  <li><a style="color: #007bff;" href="#">Trang chủ</a></li>
+                  <li><a style="color: #007bff;" href="index.php">Trang chủ</a></li>
                     <li><a style="color: #007bff;" href="post.php">Tạo bài viết</a></li>
                     <li><a style="color: #007bff;" href="logout.php">Đăng xuất</a></li>
                 </ul>

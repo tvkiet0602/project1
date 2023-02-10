@@ -5,6 +5,20 @@
     }
     header("Content-Type: text/html; charset-UTF-8");
     include 'connect.php';
+    $post_id=$_GET['id'];
+    if(isset($_POST['content'])){
+        $content = $_POST['content'];
+        if(isset($_SESSION['username'])){
+            $user_id =  mysqli_fetch_array(mysqli_query($con, "SELECT * FROM users WHERE username='".$_SESSION['username']."'")) or die("Lỗi truy vấn user_id");
+            $user_id = $user_id['user_id'];
+
+                $result = mysqli_query($con, "INSERT INTO comment(user_id, post_id, content, time) 
+                                    VALUES ('$user_id', '$post_id', '$post_id', '$time')") or die("Lỗi truy vấn thêm bình luận");
+
+        }
+    }
+
+
 
 ?>
 <!DOCTYPE html>
@@ -118,21 +132,44 @@
 
                             ?>
                         </table>
-                        <div class="col-md-9 col-md-offset-1" style="margin-left: 160px; margin-top: 50px;">
+                        <div class="col-md-12" style="margin-left: 30px; margin-top: 20px;">
                             <div class="panel panel-primary" >
-                                <div class="panel-heading" >
+                                <div class="panel-heading" style="padding: 0px; height: 20px;" >
                                     <div class="panel-body" style="padding: 0px; height: 20px;">
-                                        <b >Phản hồi</b>
+                                        <b >Viết bình luận</b>
                                     </div>
                                 </div>
                                 <form method="POST">
                                     <div class="input-group" style="height:auto;">
                                         <!-- <div class="input-group"> -->
-                                        <input type="text"  name="binhluan" class="form-control" autocomplete="off" placeholder="Hãy viết phản hồi của bạn ...">
+                                        <input type="text"  name="comment" class="form-control" autocomplete="off" placeholder="Nhập nhận xét của bạn...">
                                         <span class="input-group-btn" >
-                                <input type="submit" class="btn btn-default">
-                            </span>
+                                        <input type="submit" class="btn btn-default">
+                                        </span>
                                     </div>
+                                </form>
+                                <?php
+
+                                $time = date('Y-m-d h:i:s');
+                                date_default_timezone_set('Asia/Ho_Chi_Minh');
+
+                                 $comment = mysqli_query ($con, "SELECT * FROM users u, comment_posts c, blog_posts WHERE u.user_id=c.user_id, b.post_id=c.post_id, post_id=".$_GET['id']) or die ("Lỗi truy vấn bình luận");
+                                if(mysqli_num_rows($comment) == 0){
+                                    echo "<section style='color: green; margin-left: 10px;'>Chưa có bình luận cho bài viết này!</section>";
+                                }
+                                else{
+                                foreach($comment as $value){
+                                ?>
+                                <div style=" padding: 0px 10px;">
+                                    <section style="font-weight: bold;" >* <?= $value['fullname']?></section>
+                                    <section><?= $value['content']?></section>
+                                    <div>
+                                        <?php
+                                        }
+                                        }
+                                        ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

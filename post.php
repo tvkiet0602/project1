@@ -77,7 +77,7 @@
 
     <!--Container-->
     <div id="container" >
-        <form action="post_process.php" method="POST">
+        <form action="post_process.php" method="POST" enctype="multipart/form-data">
             <div class="row" style="width: auto;">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="panel panel-primary" style="margin-left: 10px;">
