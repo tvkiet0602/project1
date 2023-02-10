@@ -73,7 +73,7 @@
             <div class="row" style="width: auto;">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="panel panel-primary" style="margin-left: 10px;">
-                        <div class="panel-heading" ><b style="text-align: left; height: 50px; font-size: 20px;">TẠO BÀI VIẾT MỚI</b><button  class="btn btn-info" type="submit" style="float: right;">Đăng bài</button></div>
+                        <div class="panel-heading" ><b style="text-align: left; height: 50px; font-size: 20px;">TẠO BÀI VIẾT MỚI</b><button  class="btn btn-info" name="btn-upload" type="submit" style="float: right;">Đăng bài</button></div>
                             <?php
                             if(isset($_SESSION['username'])) {
                                 $sql = mysqli_query($con, "SELECT * FROM users");
@@ -116,11 +116,11 @@
                                     <dl>
                                         <dd>
 <!--                                            <input type="file" id="file-upload" name = "image_url" />-->
-                                            <form action="upload.php" method="post" enctype="multipart/form-data">
+<!--                                            <form action="upload.php" method="post" enctype="multipart/form-data">-->
                                                 <label for ="fileSelect"> Tải hình ảnh: </label>
                                                 <input type="file" name="image_url" id = "fileSelect">
-                                                <p> <strong> Lưu ý: </strong> Chỉ cho phép các định dạng .jpg, .jpeg, .gif, .png với kích thước tối đa là 5 MB. </p>
-                                            </form>
+                                                <p> <strong> Lưu ý: </strong> Chỉ cho phép các định dạng .jpg, .jpeg với kích thước tối đa là 5 MB. </p>
+<!--                                            </form>-->
                                         </dd>
                                     </dl>
                                 </div>
