@@ -99,7 +99,8 @@ if(isset($_POST['submit'])){
                     <input type="hidden" name="quyen">
                     <input type="password"  style="padding: 10px 15px; margin-top: 20px; width:100%;" name="password"  placeholder="Mật khẩu" required>
                 </div>
-                <input class="sub" type="submit" style="padding: 5px;  width: 85%;" name="submit" value="Đăng nhập">
+                <input class="sub" type="submit" style="padding: 5px;  width: 85%;" name="submit" value="Đăng nhập"><br><br>
+                <a href="signup.php">Đăng ký tài khoản</a>
             </div>
         </div>
     </form>

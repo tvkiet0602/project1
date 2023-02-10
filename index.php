@@ -143,7 +143,7 @@
                 <ul  class="nav navbar-nav navbar-right">
                   <li><a style="color: #007bff;" href="#">Trang chủ</a></li>
                     <li><a style="color: #007bff;" href="post.php">Tạo bài viết</a></li>
-                    <li><a style="color: #007bff;" href="#">Đăng xuất</a></li>
+                    <li><a style="color: #007bff;" href="logout.php">Đăng xuất</a></li>
                 </ul>
                 <form class="navbar-form navbar-right">
                   <input type="text" class="form-control" placeholder="Search...">

@@ -1,3 +1,22 @@
+<?
+    session_start();
+    header("Content-Type: text/html; charset-UTF-8");
+    include 'connect.php';
+    $user_id = $_POST['user_id'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $fullname = $_POST['fullname'];
+    $email = $_POST['email'];
+    $avatar   = $_FILES['avatar']['name'];
+    $avt_temp = $_FILES['avatar']['name_temp'];
+    $result = mysqli_query($con, "INSERT INTO users (username, password, fullname, avatar, email) VALUES('$username', '$password', '$fullname', '$avt_temp', '$email')") or die ("Lỗi truy vấn");
+//    $result = mysqli_fetch_array($qr);
+    move_uploaded_file($avt_temp, './asset./css/img/'.$avt_temp);
+
+    if($result){
+        header ("location: ./login.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +37,7 @@
         #dangky{
             text-align: center;
             margin-left: 35%;
-            margin-top: 10%;
+            margin-top: 5%;
             border: 2px solid rgba(0, 0, 0, 0.3);
             border-radius: 15px;
             background-color: #FAFBFC;
@@ -44,32 +63,36 @@
             font-size: 15px;
             color: #fff;
             font-weight: bold;
-
         }
 
         body{
-            background: cornsilk;
+            /*background: cornsilk;*/
         }
     </style>
-
-
 </head>
 <body>
-<section style="color: red; font-weight: italic; text-align: center;"><?= isset ($alert) ? $alert : '' ?></section>
-<form id="signup-form" method="POST" action="dangnhap.php" >
+<section style="color: red; text-align: center;"><?= isset ($alert) ? $alert : '' ?></section>
+<form id="signup-form" method="GET" action="signup.php" enctype="multipart/form-data" >
     <div id="dangky">
         <div class="email-pwd">
             <h1 style="margin-top: 40px;">ĐĂNG KÝ</h1><br>
-            <h5><i>Vui lòng nhập vào biểu mẫu bên dưới để đăng ký</i></h5>
+            <h5><i>Vui lòng nhập vào biểu mẫu bên dưới để đăng ký tài khoản</i></h5>
             <div class="signup">
-                <input type="text"  style="margin-top: 50px;" name="username"  placeholder="Tên tài khoản" required><br>
+                <input type="text"  style="margin-top: 50px;" name="fullname"  placeholder="Họ và tên" required>
+                <input type="text" name="username"  placeholder="Tên tài khoản" required><br>
                 <input type="password"  name="password"  placeholder="Mật khẩu" required><br>
                 <input type="password" placeholder="Nhập lại mật khẩu" name="psw-repeat" required>
+                <input type="text"  name="email"  placeholder="Email" required><br>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Ảnh đại diện</label>
+                    <input name = "avatar" class="form-control" type="file" id="formFile">
+                </div>
 
             </div>
             <input class="sub" type="submit" style="padding: 5px;  width: 85%;" name="submit" value="Đăng ký">
         </div>
     </div>
 </form>
+
 </body>
 </html>
