@@ -183,7 +183,7 @@
                               </tr>
                               <tr>
                                    <td style=''>
-                                      <h5><em>Ngày đăng: ".$r["post_date"]." --- Người tạo: ".$r["username"]."</em></h5><em>
+                                      <h5><em>Ngày đăng: ".$r["post_date"]." --- Người tạo: ".$r["fullname"]."</em></h5><em>
                                    </td>
                               </tr>
                               <tr>
@@ -197,7 +197,7 @@
                               </tr>
                               <tr>
                                   <td>
-                                      <p><a class='btn btn-default' href='detail.php' role='button'>Xem chi tiết &raquo;</a></p>
+                                      <p><a class='btn btn-default' href='detail.php?id=".$r['post_id']."' role='button'>Xem chi tiết &raquo;</a></p>
                                   </td>
                               </tr>";
                       }?>

@@ -4,21 +4,7 @@
     if(!isset($_SESSION["username"])){
         header("loation: ./login.php");
     }
-//    else{
-//        $qr = mysqli_query($con, "SELECT * FROM users");
-//        $ID = $_GET['id'];
-//        $qr = mysqli_query($con, "SELECT * FROM users WHERE user_id='$ID'") or die("Lỗi truy vấn");
-//    }
     header("Content-Type: text/html; charset-UTFF-8");
-
-//    $ID = $_GET['id'];
-    //    if(!isset($con)){
-    //        include 'connect.php';
-    //    }
-    //    $ID = $_GET['id'];
-    //    $qr = mysqli_query($con, "SELECT * FROM users WHERE user_id='$ID'") or die("Lỗi truy vấn");
-    //    $r = mysqli_fetch_array($qr);
-
 ?>
 
 <!DOCTYPE html>
