@@ -139,7 +139,7 @@
                         while ($re = mysqli_fetch_array($qr)){
                                 echo "
                                     <p>
-                                        <img src='".$re["avatar"]."' alt='...' class='img-circle' style='width: 60px; height: 60px;'>
+                                        <img src='".$re["avatar"]."' alt='...' class='img-circle' style='width: 70px; height: 60px;'>
                                         <a href='post_user.php?id=".$re['user_id']."' style='text-decoration: none; color: black;'>&emsp;".$re["fullname"]."</a>
 //                                    </p>";
                             }

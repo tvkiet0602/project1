@@ -137,35 +137,32 @@ include 'connect.php';
                     $offset = ($current_page - 1) * $number;
                     $result= mysqli_query($con, "SELECT * FROM blog_posts, users  WHERE blog_posts.user_id = users.user_id order by post_date ASC LIMIT ".$number." OFFSET ".$offset." ") or die ("Lỗi hiển thị");
                     $total = mysqli_query($con, "SELECT * FROM blog_posts");
-
                     $total = $total->num_rows;
                     $pages = ceil($total/$number);
+                    $r = mysqli_fetch_array($result);
                     while($r = mysqli_fetch_array($result)){
-                        $id = $r['$user_id'];
-
                         if($r["user_id"] == $_GET["id"]){
-                            echo "
+                                echo "
                               <tr>
                                   <td rowspan='4'>
                                       <img src='".$r["image_url"]."' alt='Ảnh bài viết' vspace='20px' hspace='30px'  >
                                   </td>
                                    <td style='font-size: 20px;'>
-                                      <p><b >".$r["title"].'</b></p><br>
-                                      
+                                      <p><b>".$r["title"]."</b></p><br>
                                   </td>
                               </tr>
                               <tr>
-                                   <td style=''>
+                                   <td >
                                       <h5><em>Ngày đăng: ".$r["post_date"]." --- Người tạo: ".$r["fullname"]."</em></h5><em>
                                    </td>
                               </tr>
                               <tr>
-                                  <td style=''>
+                                  <td>
                                       <h5>";
-                            if(strlen($r["content"]) > 100)
-                                $cOutput = mb_substr($r["content"], 0, 99, "UTF-8");
-                            echo $cOutput . "...";
-                            echo "</h5>
+                                if(strlen($r["content"]) > 100)
+                                    $cOutput = mb_substr($r["content"], 0, 99, "UTF-8");
+                                echo $cOutput . "...";
+                                echo "</h5>
                                   </td>
                               </tr>
                               <tr>
@@ -173,17 +170,23 @@ include 'connect.php';
                                       <p><a class='btn btn-default' href='detail.php?id=".$r['post_id']."' role='button'>Xem chi tiết &raquo;</a></p>
                                   </td>
                               </tr>";
+
+
+                        }else {
+                            echo "<p>Người dùng ".$r['user_id']." chưa có bài viết !</p>";
+                            break;
                         }
                     }?>
                 </table>
                 <div class="center">
                     <div class="pagination">
                         <?php
+                        $id = $r['user_id'];
                         echo "<a href='#' >&laquo;</a>";
                         for($list=1; $list<=$pages; $list++){
                             if($list != $current_page){
                                 ?>
-                                <a href='?per_page=<?=$number?>&page=<?=$list?>'><?=$list?></a>
+                                <a href='?id=<?=$id?>&per_page=<?=$number?>&page=<?=$list?>'><?=$list?></a>
                                 <?php
                             }
                             else{

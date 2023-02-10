@@ -131,22 +131,51 @@
 
                             ?>
                         </table>
-                        <div class="col-md-12" style="margin-left: 30px; margin-top: 20px;">
-                            <div class="panel panel-primary" >
-                                <div class="panel-heading" style="padding: 0px; height: 20px;" >
-                                    <div class="panel-body" style="padding: 0px; height: 20px;">
-                                        <b >Viết bình luận</b>
-                                    </div>
-                                </div>
-                                <form method="POST">
-                                    <div class="input-group" style="height:auto;">
-                                        <!-- <div class="input-group"> -->
-                                        <input type="text"  name="content" class="form-control" autocomplete="off" placeholder="Nhập nhận xét của bạn...">
-                                        <span class="input-group-btn" >
-                                        <input type="submit" class="btn btn-default">
-                                        </span>
-                                    </div>
-                                </form>
+<!--                        <div class="col-md-12" style="margin-left: 30px; margin-top: 20px;">-->
+<!--                            <div class="panel panel-primary" >-->
+<!--                                <div class="panel-heading" style="padding: 0px; height: 20px;" >-->
+<!--                                    <div class="panel-body" style="padding: 0px; height: 20px;">-->
+<!--                                        <b >Viết bình luận</b>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <form method="POST">-->
+<!--                                    <div class="input-group" style="height:auto;">-->
+<!--                                        <!-- <div class="input-group"> -->-->
+<!--                                        <input type="text"  name="content" class="form-control" autocomplete="off" placeholder="Nhập nhận xét của bạn...">-->
+<!--                                        <span class="input-group-btn" >-->
+<!--                                        <input type="submit" class="btn btn-default">-->
+<!--                                        </span>-->
+<!--                                    </div>-->
+<!--                                </form>-->
+                        <div id="cmt">
+
+                            <hr class="style13" style="height: 20px; width: 100%; border: 0; box-shadow: 0 10px 10px -10px #8c8b8b inset; margin: 0px 40px;">
+                            <h4 style="margin: 0px 40px; color: #007bff; ">BÌNH LUẬN BÀI VIẾT</h4>
+                            <?php
+                                $sql = mysqli_query ($con, "SELECT * FROM users");
+                                $r = mysqli_fetch_array($sql);
+                            ?>
+                            <div>
+                                <?php if(isset($_SESSION['username'])){
+
+                               ?>
+                                <table  width="100%" style="margin-left: 40px;">
+                                    <tr>
+                                        <td style="width: 10px">
+                                            <img src="<?=$r['avatar']?>" class="img-circle" style=" width: 60px; height: 50px; margin: 20px 0px 20px 0px;">
+                                        </td>
+                                        <td>
+                                            <textarea class="form-control" name="content" rows="3" placeholder="Nhập nhận xét của bạn..." style="margin-left: 10px;"></textarea>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <hr class="accessory" style="height: 6px;background-image: radial-gradient(closest-side,hsla(0, 0%, 50%, 1.0),hsla(0, 0%, 50%, 0) 100%);position: relative;">
+                                <?php
+                                 }
+                                 ?>
+                            </div>
+                        </div>
+
                                 <?php
 
                                  $comment = mysqli_query ($con, "SELECT * FROM users u, comment_posts c, blog_posts WHERE u.user_id=c.user_id, b.post_id=c.post_id, post_id=".$_GET['id']) or die ("Lỗi truy vấn bình luận");
