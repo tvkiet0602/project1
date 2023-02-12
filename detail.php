@@ -1,25 +1,10 @@
 <?php
     session_start();
     if(!isset($_SESSION["username"])){
-        header("location: ../login.php");
+        header("location: ./login.php");
     }
     header("Content-Type: text/html; charset-UTF-8");
     include 'connect.php';
-    $post_id=$_GET['id'];
-    $time = date('Y-m-d h:i:s');
-    date_default_timezone_set('Asia/Ho_Chi_Minh');
-    if(isset($_POST['content'])){
-        $content = $_POST['content'];
-        if(isset($_SESSION['username'])){
-            $user_id =  mysqli_fetch_array(mysqli_query($con, "SELECT * FROM users")) or die("Lỗi truy vấn user_id");
-            $user_id = $user_id['user_id'];
-                $result = mysqli_query($con, "INSERT INTO comment(user_id, post_id, content, time) 
-                                    VALUES ('$user_id', '$post_id', '$post_id', '$time')") or die("Lỗi truy vấn thêm bình luận");
-
-        }
-    }
-
-
 
 ?>
 <!DOCTYPE html>
@@ -93,6 +78,7 @@
                     <div class="col-xs-11" >
                         <table  style="width: 100%; margin-left: 40px;" >
                             <?php
+
                                 $result= mysqli_query($con, "SELECT * FROM blog_posts, users  WHERE blog_posts.user_id = users.user_id  order by post_date ASC ") or die ("Lỗi hiển thị");
                                 $post_id = $_GET["id"];
                                 while($r = mysqli_fetch_array($result)){
@@ -119,10 +105,9 @@
                                                
                                             </td>
                                         </tr>
-                                       
                                         <tr>
                                               <td style='float: left;'>
-                                                <img src='".$r["image_url"]."' alt='...' style='width: 500px; height: 300px; margin-right: auto; margin-left: auto; display: block;'>  
+                                                <img src='./assets/css/img/".$r["image_url"]."' alt='...' style='width: 500px; height: 300px; margin-right: auto; margin-left: auto; display: block;'>  
                                                  <p style='font-size: 20px; text-align: justify;'>".$r["content"]."</p>
                                               </td>
                                         </tr>";
@@ -131,53 +116,64 @@
 
                             ?>
                         </table>
-<!--                        <div class="col-md-12" style="margin-left: 30px; margin-top: 20px;">-->
-<!--                            <div class="panel panel-primary" >-->
-<!--                                <div class="panel-heading" style="padding: 0px; height: 20px;" >-->
-<!--                                    <div class="panel-body" style="padding: 0px; height: 20px;">-->
-<!--                                        <b >Viết bình luận</b>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <form method="POST">-->
-<!--                                    <div class="input-group" style="height:auto;">-->
-<!--                                        <!-- <div class="input-group"> -->-->
-<!--                                        <input type="text"  name="content" class="form-control" autocomplete="off" placeholder="Nhập nhận xét của bạn...">-->
-<!--                                        <span class="input-group-btn" >-->
-<!--                                        <input type="submit" class="btn btn-default">-->
-<!--                                        </span>-->
-<!--                                    </div>-->
-<!--                                </form>-->
-                        <div id="cmt">
-
+                        <form id="cmt" action="comment.php" method="POST">
                             <hr class="style13" style="height: 20px; width: 100%; border: 0; box-shadow: 0 10px 10px -10px #8c8b8b inset; margin: 0px 40px;">
                             <h4 style="margin: 0px 40px; color: #007bff; ">BÌNH LUẬN BÀI VIẾT</h4>
                             <?php
+
                                 $sql = mysqli_query ($con, "SELECT * FROM users");
                                 $r = mysqli_fetch_array($sql);
+
+
                             ?>
                             <div>
-                                <?php if(isset($_SESSION['username'])){
 
-                               ?>
                                 <table  width="100%" style="margin-left: 40px;">
                                     <tr>
-                                        <td style="width: 10px">
-                                            <img src="<?=$r['avatar']?>" class="img-circle" style=" width: 60px; height: 50px; margin: 20px 0px 20px 0px;">
+                                        <td style="width: 10px"><?php
+                                            ?>
+                                            <img src="<?=$r['avatar']?>" class="img-rounded" style=" width: 70px; height: 70px; margin: 20px 0px 20px 0px;">
                                         </td>
+
                                         <td>
-                                            <textarea class="form-control" name="content" rows="3" placeholder="Nhập nhận xét của bạn..." style="margin-left: 10px;"></textarea>
+                                            <div class="input-group">
+                                            <textarea class="form-control" name="comment" rows="3" placeholder="Nhập nhận xét của bạn..." style="margin-left: 10px; width: 100%;"> </textarea>
+                                            <span class="input-group-btn" >
+                                                <input style="height: 74px; font-size: 18px;" type="submit" class="btn btn-default">
+                                            </span>
+                                            </div>
                                         </td>
                                     </tr>
                                 </table>
                                 <hr class="accessory" style="height: 6px;background-image: radial-gradient(closest-side,hsla(0, 0%, 50%, 1.0),hsla(0, 0%, 50%, 0) 100%);position: relative;">
-                                <?php
-                                 }
-                                 ?>
+                                <table style="margin: 0px 40px;" >
+                                    <?php
+                                    $cmt = mysqli_query ($con, "SELECT * FROM users join comment_posts  on users.user_id=comment_posts.user_id join blog_posts on blog_posts.post_id=comment_posts.post_id WHERE blog_posts.post_id=".$_GET['id']." ") or die ("Lỗi truy vấn 333");
+                                    if(mysqli_num_rows($cmt) == 0){
+                                        echo "<section style='color: green; margin-left: 10px;'>Chưa có phản hồi / bình luận nào cho bài viết này!</section>";
+                                    }
+                                    else{
+                                    foreach($cmt as $value){
+                                    ?>
+                                    <div">
+                                        <tr>
+                                            <td style="width: 10px">
+                                                <img src="<?=$r['avatar']?>" class="img-rounded" style=" width: 70px; height: 70px; margin: 0px 0px 20px 0px;">
+                                            </td>
+                                            <td>
+                                                <section style="font-weight: bold; margin-left: 20px; font-size: 17px; margin-top: 0px;" ><?= $value['fullname']?></section>
+                                                <section style="margin-left: 20px;"><?= $value['comment']?></section>
+                                            </td>
+                                        </tr>
+                                        <div>
+                                            <?php
+                                    }
+                                    }
+                                            ?>
+                                </table>
                             </div>
-                        </div>
-
+                        </form>
                                 <?php
-
                                  $comment = mysqli_query ($con, "SELECT * FROM users u, comment_posts c, blog_posts WHERE u.user_id=c.user_id, b.post_id=c.post_id, post_id=".$_GET['id']) or die ("Lỗi truy vấn bình luận");
                                 if(mysqli_num_rows($comment) == 0){
                                     echo "<section style='color: green; margin-left: 10px;'>Chưa có bình luận cho bài viết này!</section>";
@@ -187,7 +183,7 @@
                                 ?>
                                 <div style=" padding: 0px 10px;">
                                     <section style="font-weight: bold;" >* <?= $value['fullname']?></section>
-                                    <section><?= $value['content']?></section>
+                                    <section><?= $value['comment']?></section>
                                     <div>
                                         <?php
                                         }

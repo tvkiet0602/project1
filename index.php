@@ -1,10 +1,12 @@
 <?php
     session_start();
     if(!isset($_SESSION["username"])){
-        header("location: ../login.php");
+        header("location: ./login.php");
     }
     header("Content-Type: text/html; charset-UTF-8");
     include 'connect.php';
+
+
 ?>
 
 <!DOCTYPE html>
@@ -69,6 +71,7 @@
               <button type="button" class="btn btn-primary">BÀI VIẾT MỚI</button>
               <table >
                   <?php
+
                         $number = !empty($_GET['per_page'])?$_GET['per_page']:3;
                         $current_page = !empty($_GET['page'])?$_GET['page']:1; //Trang hiện tại
                         $offset = ($current_page - 1) * $number;
