@@ -23,16 +23,14 @@
     <link rel="stylesheet" href="./assets/css/responsive.css">
     <link rel="stylesheet" href="./assets/css/icon/themify-icons-font/themify-icons/themify-icons.css">
     <style>
-
-
         body {
             font-family: Arial;
             padding: 10px;
             background: #e9d8f4;
         }
-
-
-
+        #row .rightcolumn .card{
+            margin: 0px 0px;
+        }
 
 
         /*.pagination a:first-child {*/
@@ -115,37 +113,36 @@
                   <div class="pagination">
                       <?php
                       echo "<a href='#' >&laquo;</a>";
-                            for($list=1; $list<=$pages; $list++){
-                                if($list != $current_page){
+                        for($list=1; $list<=$pages; $list++){
+                            if($list != $current_page){
                       ?>
-                                    <a href='?per_page=<?=$number?>&page=<?=$list?>'><?=$list?></a>
-                                    <?php
-                                        }
-                                        else{
-                                            echo "<strong class='btn btn-primary '>".$list."</strong>";
-                                        }
-                                    }
-                                      echo"<a href='#'>&raquo;</a>";
-                                    ?>
+                        <a href='?per_page=<?=$number?>&page=<?=$list?>'><?=$list?></a>
+                        <?php
+                            }
+                            else{
+                                echo "<strong class='btn btn-primary '>".$list."</strong>";
+                            }
+                        }
+                          echo"<a href='#'>&raquo;</a>";
+                        ?>
                   </div>
               </div>
           </div>
       </div>
-<!--        User-->
         <div class="rightcolumn" >
-            <div class="card" style="margin: 0px 0px;">
+            <div class="card">
                 <h3>Người dùng</h3>
                 <div class="fakeimg">
                     <p>
                         <?php
                         $qr= mysqli_query($con, "SELECT * FROM users ") or die ("Lỗi user");
                         while ($re = mysqli_fetch_array($qr)){
-                                echo "
-                                    <p>
-                                        <img src='".$re["avatar"]."' alt='...' class='img-circle' style='width: 70px; height: 60px;'>
-                                        <a href='post_user.php?id=".$re['user_id']."' style='text-decoration: none; color: black;'>&emsp;".$re["fullname"]."</a>
-//                                    </p>";
-                            }
+                            echo "
+                                <p>
+                                    <img src='".$re["avatar"]."' alt='...' class='img-circle' style='width: 70px; height: 60px;'>
+                                    <a href='post_user.php?id=".$re['user_id']."' style='text-decoration: none; color: black;'>&emsp;".$re["fullname"]."</a>
+                                </p>";
+                        }
                         ?>
                     </p>
                 </div>
@@ -157,7 +154,7 @@
 <!--            </div>-->
         </div>
     </div>
-    </div>
+</div>
 </body>
 </html>
 

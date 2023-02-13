@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="./css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
     <link rel="stylesheet" href="./assets/css/icon/themify-icons-font/themify-icons/themify-icons.css">
     <style>
         body{
@@ -39,6 +40,9 @@
         #row .col-sm-2{
             width: 20em;
         }
+        #row .panel-heading{
+            text-align: left; height: 50px; font-size: 20px;
+        }
 
     </style>
 </head>
@@ -48,13 +52,13 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a style="color: #007bff; font-size:xx-large;" class="navbar-brand" href="#">MyBlog</a>
+                <a class="navbar-brand" href="index.php">MyBlog</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul  class="nav navbar-nav navbar-right">
-                    <li><a style="color: #007bff;" href="index.php">Trang chủ</a></li>
-                    <li><a style="color: #007bff;" href="post.php">Tạo bài viết</a></li>
-                    <li><a style="color: #007bff;" href="#">Đăng xuất</a></li>
+                    <li><a href="index.php">Trang chủ</a></li>
+                    <li><a  href="post.php">Tạo bài viết</a></li>
+                    <li><a  href="logout.php">Đăng xuất</a></li>
                 </ul>
                 <form class="navbar-form navbar-right">
                     <input type="text" class="form-control" placeholder="Search...">
@@ -70,10 +74,10 @@
     <!--Container-->
     <div id="container" >
         <form action="post_process.php" method="POST" enctype="multipart/form-data">
-            <div class="row" style="width: auto;">
+            <div id="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <div class="panel panel-primary" style="margin-left: 10px;">
-                        <div class="panel-heading" ><b style="text-align: left; height: 50px; font-size: 20px;">TẠO BÀI VIẾT MỚI</b><button  class="btn btn-info" name="btn-upload" type="submit" style="float: right;">Đăng bài</button></div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading" ><b>TẠO BÀI VIẾT MỚI</b><button  class="btn btn-info" name="btn-upload" type="submit" style="float: right;">Đăng bài</button></div>
                             <?php
                             if(isset($_SESSION['username'])) {
                                 $sql = mysqli_query($con, "SELECT * FROM users");
