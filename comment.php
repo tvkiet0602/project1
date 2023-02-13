@@ -1,5 +1,7 @@
 <?php
     session_start();
+    $post_id = $_GET['id'];
+
     if(!isset($_SESSION["username"])){
         header("location: ./login.php");
     }
@@ -10,11 +12,12 @@
     if(isset($_POST['comment'])){
         $comment = $_POST['comment'];
         if(isset($_SESSION['username'])){
-            $r =  mysqli_fetch_array(mysqli_query($con, "SELECT * FROM users, blog_posts")) or die("Lỗi truy vấn id");
-            $user_id = $r['user_id'];
-            $post_id = $r['post_id'];
+
+//            $r =  mysqli_fetch_array(mysqli_query($con, "SELECT * FROM blog_posts WHERE post_id = ".$_GET['id']."")) or die("Lỗi truy vấn id");
+            echo $user_id = $_SESSION['user_id'];
+
             $result = mysqli_query($con, "INSERT INTO comment_posts(user_id, post_id, comment, time) 
-                                        VALUES ('$user_id', '$post_id', '$comment', '$time')") or die("Lỗi truy vấn thêm bình luận");
+                                        VALUES ($user_id, $post_id, '$comment', '$time')") or die("Lỗi truy vấn thêm bình luận");
             if($result){
                 header("location: ./detail.php?id=".$post_id);
             }

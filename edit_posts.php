@@ -6,7 +6,7 @@
     header("Content-Type: text/html; charset-UTF-8");
     include 'connect.php';
     if(isset($_SESSION['username'])) {
-        $sql = mysqli_query($con, "SELECT * FROM users, blog_posts WHERE post_id = ".$_GET['id']." ");
+        $sql = mysqli_query($con, "SELECT * FROM users, blog_posts WHERE post_id = ".$_GET['id']."  ") or die ("Lỗi");
         $r = mysqli_fetch_array($sql);
     }
 ?>
@@ -90,11 +90,16 @@
                         <div class="panel-heading" ><b>Chỉnh sửa bài viết</b><button class="btn btn-info" name="btn-edit" type="submit">Cập nhật</button></div>
                         <table>
                             <tr>
+                                <?php
+                                $get_user = mysqli_query($con, "SELECT * FROM users WHERE username = '".$_SESSION['username']."' ") or die ("Lỗi user");
+                                $get = mysqli_fetch_array($get_user);
+                                ?>
                                 <th rowspan="2">
-                                    <img src="<?=$r['avatar']?>" alt="..." class="img-circle">
+                                    <img src="<?=$get['avatar']?>" alt="..." class="img-circle">
+
                                 </th>
                                 <td>
-                                    <b class="name"><?=$r['fullname']?></b>
+                                    <b class="name"><?=$get['fullname']?></b>
                                 </td>
                             </tr>
                             <tr>

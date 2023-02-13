@@ -129,23 +129,26 @@ include 'connect.php';
     <div id="row">
         <div class="leftcolumn">
             <div class="card" style="margin: 0px 150px 0px 150px;">
-                <button type="button" class="btn btn-primary">BÀI VIẾT CÁ NHÂN</button>
-                <table>
+
                     <?php
                     $number = !empty($_GET['per_page'])?$_GET['per_page']:3;
                     $current_page = !empty($_GET['page'])?$_GET['page']:1; //Trang hiện tại
                     $offset = ($current_page - 1) * $number;
-                    $result= mysqli_query($con, "SELECT * FROM blog_posts, users  WHERE blog_posts.user_id = users.user_id order by post_date ASC LIMIT ".$number." OFFSET ".$offset." ") or die ("Lỗi hiển thị");
+                    $result= mysqli_query($con, "SELECT * FROM blog_posts, users WHERE blog_posts.user_id = users.user_id AND blog_posts.user_id = '".$_GET['id']."' order by post_date ASC LIMIT ".$number." OFFSET ".$offset." ") or die ("Lỗi hiển thị");
                     $total = mysqli_query($con, "SELECT * FROM blog_posts");
                     $total = $total->num_rows;
                     $pages = ceil($total/$number);
                     $r = mysqli_fetch_array($result);
+                    ?>
+                    <button type="button" class="btn btn-primary"><?php echo "Blog - ".$r['fullname'];?></button>
+                    <table>
+                    <?php
                     while($r = mysqli_fetch_array($result)){
-                        if($r["user_id"] == $_GET["id"]){
+                        if($r['user_id'] == $_GET['id']){
                                 echo "
                               <tr>
                                   <td rowspan='4'>
-                                      <img src='".$r["image_url"]."' alt='Ảnh bài viết' vspace='20px' hspace='30px'  >
+                                      <img src='./assets/css/img/".$r["image_url"]."' alt='Ảnh bài viết' vspace='20px' hspace='30px'>
                                   </td>
                                    <td style='font-size: 20px;'>
                                       <p><b>".$r["title"]."</b></p><br>
@@ -159,9 +162,9 @@ include 'connect.php';
                               <tr>
                                   <td>
                                       <h5>";
-                                if(strlen($r["content"]) > 100)
-                                    $cOutput = mb_substr($r["content"], 0, 99, "UTF-8");
-                                echo $cOutput . "...";
+                                if(strlen($r["content"]) > 100){
+                                    echo mb_substr($r["content"], 0, 99, "UTF-8") . "...";
+                                }
                                 echo "</h5>
                                   </td>
                               </tr>
@@ -170,18 +173,13 @@ include 'connect.php';
                                       <p><a class='btn btn-default' href='detail.php?id=".$r['post_id']."' role='button'>Xem chi tiết &raquo;</a></p>
                                   </td>
                               </tr>";
-
-
-                        }else {
-                            echo "<p>Người dùng ".$r['user_id']." chưa có bài viết !</p>";
-                            break;
-                        }
+                        }else echo"Người dùng ".$r['fullname']." chưa có bài viết nào!";
                     }?>
                 </table>
                 <div class="center">
                     <div class="pagination">
                         <?php
-                        $id = $r['user_id'];
+                        $id = $_SESSION['user_id'];
                         echo "<a href='#' >&laquo;</a>";
                         for($list=1; $list<=$pages; $list++){
                             if($list != $current_page){

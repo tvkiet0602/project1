@@ -65,22 +65,23 @@
 <!--Container-->
 <div id="row">
       <div class="leftcolumn">
-          <div class="card">
+          <div class="card"  style="min-height: 500px;">
               <button type="button" class="btn btn-primary">BÀI VIẾT MỚI</button>
               <table >
                   <?php
 
-                        $number = !empty($_GET['per_page'])?$_GET['per_page']:3;
-                        $current_page = !empty($_GET['page'])?$_GET['page']:1; //Trang hiện tại
-                        $offset = ($current_page - 1) * $number;
-                      $result= mysqli_query($con, "SELECT * FROM blog_posts, users  WHERE blog_posts.user_id = users.user_id order by post_date ASC LIMIT ".$number." OFFSET ".$offset." ") or die ("Lỗi hiển thị");
-                      $total = mysqli_query($con, "SELECT * FROM blog_posts");
-//                      var_dump($total);
+                    $number = !empty($_GET['per_page'])?$_GET['per_page']:3;
+                    $current_page = !empty($_GET['page'])?$_GET['page']:1; //Trang hiện tại
+                    $offset = ($current_page - 1) * $number;
+                      $result= mysqli_query($con, "SELECT * FROM blog_posts, users  WHERE blog_posts.user_id = users.user_id AND blog_posts.is_private=0 order by post_date ASC LIMIT ".$number." OFFSET ".$offset." ") or die ("Lỗi hiển thị");
+                      $total = mysqli_query($con, "SELECT * FROM blog_posts , users  WHERE blog_posts.user_id = users.user_id AND blog_posts.is_private=0 ");
                       $total = $total->num_rows;
                       $pages = ceil($total/$number);
                       while ($r = mysqli_fetch_array($result)){
+                          if($r['is_private'] == 0){
+
                           echo "
-                              <tr>
+                              <tr >
                                   <td rowspan='4'>
                                       <img src='./assets/css/img/".$r["image_url"]."' alt='Ảnh bài viết' vspace='20px' hspace='30px'  >
                                   </td>
@@ -97,8 +98,7 @@
                                   <td>
                                       <h5>";
                           if(strlen($r["content"]) > 100)
-                              $cOutput = mb_substr($r["content"], 0, 99, "UTF-8");
-                          echo $cOutput . "...";
+                              echo mb_substr($r["content"], 0, 99, "UTF-8") . "...";
                           echo "</h5>
                                   </td>
                               </tr>
@@ -107,6 +107,7 @@
                                       <p><a class='btn btn-default' href='detail.php?id=".$r['post_id']."' role='button'>Xem chi tiết &raquo;</a></p>
                                   </td>
                               </tr>";
+                          }
                       }?>
               </table>
               <div class="center">

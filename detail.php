@@ -49,7 +49,8 @@
             font-size: 30px; display: inline; float: left;
         }
         #edit{
-            font-size: 17px; float:right;
+            font-size: 17px;
+            float:right;
         }
         #row .img{
             width: 500px; height: 300px; margin-right: auto; margin-left: auto; display: block;
@@ -60,7 +61,7 @@
         .hr1{
             height: 20px; width: 100%; border: 0; box-shadow: 0 10px 10px -10px #8c8b8b inset; margin: 0px;
         }
-        h4{
+        #cmt h4{
             margin: 0px; color: #007bff;
         }
         .input-group-btn input{
@@ -99,6 +100,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul  class="nav navbar-nav navbar-right">
+                    <li><a>Xin chào <?php echo $_SESSION['username']; ?></a></li>
                     <li><a  href="index.php">Trang chủ</a></li>
                     <li><a  href="post.php">Tạo bài viết</a></li>
                     <li><a  href="logout.php">Đăng xuất</a></li>
@@ -126,12 +128,13 @@
                                 $post_id = $_GET["id"];
                                 while($r = mysqli_fetch_array($result)){
                                     if($r["post_id"] == $post_id){
+                                        if($r['username'] == $_SESSION['username']){
                                         echo "
                                         <tr>
                                             <td height: auto;>
                                                 <p><b class= 'title' >".$r["title"]."</b></p>
-                                               
-                                                <a id='edit' class='btn btn-default' href='edit_posts.php?id=".$r['post_id']."'  role='button'>Chỉnh sửa</a><br><br>
+                                              
+                                                <a id='edit' class='btn btn-default' href='edit_posts.php?id=".$r['post_id']."'>Chỉnh sửa</a><br><br>
                                                     
                                                 </div>
                                                 
@@ -146,22 +149,44 @@
                                                  <p class='content'>".$r["content"]."</p>
                                               </td>
                                         </tr>";
+
+                                        }else{
+                                            echo "
+                                        <tr>
+                                            <td height: auto;>
+                                                <p><b class= 'title' >".$r["title"]."</b></p><br><br>
+                                              
+                                                </div>
+                                                
+                                                <h4><em>Ngày đăng: ".$r["post_date"]." </em></h4> 
+                                                 <h4><em>Người tạo: ".$r["fullname"]."</em></h4><br></td>
+                                            </td>
+                                          
+                                        </tr>
+                                        <tr>
+                                              <td>
+                                                <img class='img' src='./assets/css/img/".$r["image_url"]."' alt='Ảnh' >  
+                                                 <p class='content'>".$r["content"]."</p>
+                                              </td>
+                                        </tr>";
+
+                                        }
                                     }
                                 }
                             ?>
                         </table>
-                        <form id="cmt" action="comment.php" method="POST">
+                        <form id="cmt" action="comment.php?id=<?= $post_id?>" method="POST">
                             <hr class="hr1">
                             <h4>BÌNH LUẬN BÀI VIẾT</h4>
                             <?php
-                                $sql = mysqli_query ($con, "SELECT * FROM users");
+                                $sql = mysqli_query ($con, "SELECT * FROM users WHERE username = '".$_SESSION['username']."'");
                                 $r = mysqli_fetch_array($sql);
+
                             ?>
                             <div>
                                 <table  width="100%" >
                                     <tr>
-                                        <td class="form-cmt"><?php
-                                            ?>
+                                        <td class="form-cmt">
                                             <img class="avt-cmt-own" src="<?=$r['avatar']?>" class="img-rounded">
                                         </td>
                                         <td>
@@ -182,16 +207,16 @@
                                         echo "<section style=''>Chưa có bình luận nào cho bài viết này!</section>";
                                     }
                                     else{
-                                    foreach($cmt as $value){
+                                    While($r = mysqli_fetch_array($cmt)){
                                     ?>
-                                    <div">
+                                    <div>
                                         <tr>
                                             <td>
                                                 <img src="<?=$r['avatar']?>" class="img-rounded">
                                             </td>
                                             <td>
-                                                <section class="section-fullname"><?= $value['fullname']?></section>
-                                                <section class="section-cmt" ><?= $value['comment']?></section>
+                                                <section class="section-fullname"><?= $r['fullname']?></section>
+                                                <section class="section-cmt" ><?= $r['comment']?></section>
                                             </td>
                                         </tr>
                                         <div>
@@ -202,22 +227,6 @@
                                 </table>
                             </div>
                         </form>
-                                <?php
-                                 $comment = mysqli_query ($con, "SELECT * FROM users u, comment_posts c, blog_posts WHERE u.user_id=c.user_id, b.post_id=c.post_id, post_id=".$_GET['id']) or die ("Lỗi truy vấn bình luận");
-                                if(mysqli_num_rows($comment) == 0){
-                                    echo "<section>Chưa có bình luận cho bài viết này!</section>";
-                                }
-                                else{
-                                foreach($comment as $value){
-                                ?>
-                                <div>
-                                    <section style="font-weight: bold;" >* <?= $value['fullname']?></section>
-                                    <section><?= $value['comment']?></section>
-                                    <div>
-                                <?php
-                                        }
-                                    }
-                                ?>
                             </div>
                         </div>
                     </div>
