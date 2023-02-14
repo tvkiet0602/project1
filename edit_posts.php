@@ -54,8 +54,8 @@
         .name{
             font-size: 17px;
         }
-        #row .pic img{
-            width: 200px; height: 170px; display: block;
+        #row .img{
+            width: 70px; height: 70px; margin: 10px 20px;
         }
     </style>
 </head>
@@ -95,7 +95,7 @@
                                 $get = mysqli_fetch_array($get_user);
                                 ?>
                                 <th rowspan="2">
-                                    <img src="<?=$get['avatar']?>" alt="..." class="img-circle">
+                                    <img class="img" src="<?=$get['avatar']?>" alt="Avatar">
 
                                 </th>
                                 <td>

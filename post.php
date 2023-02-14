@@ -43,7 +43,16 @@
         #row .panel-heading{
             text-align: left; height: 50px; font-size: 20px;
         }
+        .panel-heading button{
+            float: right;
+        }
+        #row .img{
+            width: 70px; height: 70px; margin: 10px 20px;
+        }
 
+        .name{
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
@@ -77,7 +86,7 @@
             <div id="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="panel panel-primary">
-                        <div class="panel-heading" ><b>TẠO BÀI VIẾT MỚI</b><button  class="btn btn-info" name="btn-upload" type="submit" style="float: right;">Đăng bài</button></div>
+                        <div class="panel-heading" ><b>TẠO BÀI VIẾT MỚI</b><button  class="btn btn-info" name="btn-upload" type="submit" >Đăng bài</button></div>
                             <?php
                             if(isset($_SESSION['username'])) {
                                 $sql = mysqli_query($con, "SELECT * FROM users");
@@ -87,15 +96,15 @@
                         <table>
                             <tr>
                                 <th rowspan="2">
-                                    <img src="<?=$r['avatar']?>" alt="..." class="img-circle" style=" width: 70px; height: 70px; margin: 10px;">
+                                    <img class ="img" src="<?=$r['avatar']?>" alt="Avatar" >
                                 </th>
                                 <td>
-                                    <b style="font-size: 18px;"><?=$r['fullname']?></b>
+                                    <b class="name"><?=$r['fullname']?></b>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="btn-group" style="text-align: center;">
+                                    <div class="btn-group" >
                                         <select class="form-control" name="is_private">
                                             <option selected value="0">Công khai</option>
                                             <option value="1">Riêng tư</option>
@@ -105,7 +114,7 @@
                             </tr>
                         </table>
                         <table class="table" >
-                            <div class="callout callout-info" style="margin-top: 15px;">
+                            <div class="callout callout-info" >
                                 <div class="col-sm-12">
                                     <dl>
                                         <dd>
@@ -119,12 +128,9 @@
                                     </dl>
                                     <dl>
                                         <dd>
-<!--                                            <input type="file" id="file-upload" name = "image_url" />-->
-<!--                                            <form action="upload.php" method="post" enctype="multipart/form-data">-->
-                                                <label for ="fileSelect"> Tải hình ảnh: </label>
-                                                <input type="file" name="image_url" id = "fileSelect">
-                                                <p> <strong> Lưu ý: </strong> Chỉ cho phép các định dạng .jpg, .jpeg với kích thước tối đa là 5 MB. </p>
-<!--                                            </form>-->
+                                            <label for ="fileSelect"> Tải hình ảnh: </label>
+                                            <input type="file" name="image_url" id = "fileSelect">
+                                            <p> <strong> Lưu ý: </strong> Chỉ cho phép các định dạng .jpg, .jpeg với kích thước tối đa là 5 MB. </p>
                                         </dd>
                                     </dl>
                                 </div>

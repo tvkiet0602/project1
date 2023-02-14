@@ -50,8 +50,9 @@
 <!--Header-->
     <div id="header">
         <nav class="navbar navbar-default navbar-fixed-top">
-            <a class="navbar-brand" href="index.php">MyBlog</a>
+            <a class="navbar-brand" href="myblog.php">MyBlog</a>
             <ul  class="nav navbar-nav navbar-right">
+                <li><a>Xin chào <?php echo $_SESSION['username']; ?></a></li>
               <li><a href="index.php">Trang chủ</a></li>
                 <li><a  href="post.php">Tạo bài viết</a></li>
                 <li><a  href="logout.php">Đăng xuất</a></li>
@@ -79,7 +80,6 @@
                       $pages = ceil($total/$number);
                       while ($r = mysqli_fetch_array($result)){
                           if($r['is_private'] == 0){
-
                           echo "
                               <tr >
                                   <td rowspan='4'>
@@ -140,7 +140,7 @@
                         while ($re = mysqli_fetch_array($qr)){
                             echo "
                                 <p>
-                                    <img src='".$re["avatar"]."' alt='...' class='img-circle' style='width: 70px; height: 60px;'>
+                                    <img src='./assets/css/avatar/".$re["avatar"]."' alt='Ảnh đại diện' class='img-circle' style='width: 70px; height: 60px;'>
                                     <a href='post_user.php?id=".$re['user_id']."' style='text-decoration: none; color: black;'>&emsp;".$re["fullname"]."</a>
                                 </p>";
                         }
