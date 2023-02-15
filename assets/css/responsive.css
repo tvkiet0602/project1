@@ -3,6 +3,20 @@
 }
 
 @media (max-width: 739px) {
+    #login{
+        padding: 50px 150px;
+        margin: 30px 50px;
+    }
+    #login .email-pwd{
+        text-align: center;
+        padding: 0px;
+        margin: 0px;
+    }
+    #login h1{
+        margin: 0px;
+        text-align: center;
+        width: 100%;
+    }
     #header nav li a{
         float: right;
     }

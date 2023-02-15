@@ -9,8 +9,6 @@
         $title = $_POST['title'];
         $content = $_POST['content'];
         $is_private = $_POST['is_private'];
-
-
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $post_date = date('Y-m-d h:i:s');
         $qr = mysqli_query($con, "SELECT * FROM blog_posts, users  WHERE blog_posts.user_id = users.user_id AND post_id = ".$_GET['id']."") or die ("Lỗi nhận user_id");

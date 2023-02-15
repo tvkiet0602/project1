@@ -55,7 +55,7 @@ if(isset($_POST['submit'])){
     </style>
 </head>
 <body>
-    <form method="POST" action="login.php" >
+    <form method="POST" action="/login.php" >
         <div id="login">
             <div class="email-pwd">
                 <h1>ĐĂNG NHẬP</h1><br>

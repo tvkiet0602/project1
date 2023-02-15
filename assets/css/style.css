@@ -26,8 +26,8 @@ html{
 #dangky h1{
     margin-top: 40px;
 }
-#dangky .fullname{
-    margin-top: 50px;
+#dangky h5{
+    margin-bottom: 40px;
 }
 #dangky .sub{
     padding: 5px;
@@ -43,11 +43,12 @@ html{
     font-weight: bold;
 }
 
-.signup input{
+.js_sign input{
     padding: 10px 15px;
     margin: 0px 10px 30px;
     width: 90%;
 }
+
 
 /*TRANG ĐĂNG NẬP*/
 #login{
