@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION["username"])){
-    header("location: ../login.php");
+    header("location: ./login.php");
 }
 header("Content-Type: text/html; charset-UTF-8");
 include 'connect.php';
@@ -43,10 +43,6 @@ include 'connect.php';
         #row .title{
             font-size: 20px;
         }
-
-
-
-
     </style>
 </head>
 <body>
@@ -78,22 +74,22 @@ include 'connect.php';
     <div id="row">
         <div class="leftcolumn">
             <div class="card" >
-                    <?php
-                    $number = !empty($_GET['per_page'])?$_GET['per_page']:3;
-                    $current_page = !empty($_GET['page'])?$_GET['page']:1; //Trang hiện tại
-                    $offset = ($current_page - 1) * $number;
-                    $result= mysqli_query($con, "SELECT * FROM blog_posts, users WHERE blog_posts.user_id = users.user_id AND blog_posts.user_id = '".$_GET['id']."' order by post_date ASC LIMIT ".$number." OFFSET ".$offset." ") or die ("Lỗi hiển thị");
-                    $total = mysqli_query($con, "SELECT * FROM blog_posts");
-                    $total = $total->num_rows;
-                    $pages = ceil($total/$number);
-                    $r = mysqli_fetch_array($result);
-                    ?>
-                    <button type="button" class="btn btn-primary"><?php echo "Blog - ".$r['fullname'];?></button>
-                    <table>
+                <?php
+                $number = !empty($_GET['per_page'])?$_GET['per_page']:6;
+                $current_page = !empty($_GET['page'])?$_GET['page']:1; //Trang hiện tại
+                $offset = ($current_page - 1) * $number;
+                $result= mysqli_query($con, "SELECT * FROM blog_posts, users WHERE blog_posts.user_id = users.user_id AND blog_posts.user_id = '".$_SESSION['user_id']."' order by post_date ASC LIMIT ".$number." OFFSET ".$offset." ") or die ("Lỗi hiển thị");
+                $total = mysqli_query($con, "SELECT * FROM blog_posts, users  WHERE blog_posts.user_id = users.user_id AND blog_posts.user_id = '".$_SESSION['user_id']."'");
+                $total = $total->num_rows;
+                $pages = ceil($total/$number);
+                $r = mysqli_fetch_array($result);
+                ?>
+                <button type="button" class="btn btn-primary">Blog cá nhân </button>
+                <table>
                     <?php
                     while($r = mysqli_fetch_array($result)){
-                        if($r['user_id'] == $_GET['id']){
-                                echo "
+                        if($r['user_id'] == $_SESSION['user_id']){
+                            echo "
                               <tr>
                                   <td rowspan='4'>
                                       <img src='./assets/css/img/".$r["image_url"]."' alt='Ảnh bài viết' vspace='20px' hspace='30px'>
@@ -110,10 +106,10 @@ include 'connect.php';
                               <tr>
                                   <td>
                                       <h5>";
-                                if(strlen($r["content"]) > 100){
-                                    echo mb_substr($r["content"], 0, 99, "UTF-8") . "...";
-                                }
-                                echo "</h5>
+                            if(strlen($r["content"]) > 100){
+                                echo mb_substr($r["content"], 0, 99, "UTF-8") . "...";
+                            }
+                            echo "</h5>
                                   </td>
                               </tr>
                               <tr>

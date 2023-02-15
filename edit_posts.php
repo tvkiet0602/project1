@@ -1,12 +1,15 @@
 <?php
     session_start();
-    include 'connect.php';
     if(!isset($_SESSION["username"])){
-        header("loation: ./login.php");
+        header("location: ./login.php");
     }
-    header("Content-Type: text/html; charset-UTFF-8");
+    header("Content-Type: text/html; charset-UTF-8");
+    include 'connect.php';
+    if(isset($_SESSION['username'])) {
+        $sql = mysqli_query($con, "SELECT * FROM users, blog_posts WHERE post_id = ".$_GET['id']."  ") or die ("Lỗi");
+        $r = mysqli_fetch_array($sql);
+    }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +17,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang chủ</title>
-
     <link rel="stylesheet" href="./css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
@@ -40,18 +42,20 @@
         #row .col-sm-2{
             width: 20em;
         }
-        #row .panel-heading{
+        #container .panel-heading{
             text-align: left; height: 50px; font-size: 20px;
         }
-        .panel-heading button{
+        #row .btn-info{
             float: right;
+        }
+        #row .img-circle{
+            width: 80px; height: 70px; margin: 10px;
+        }
+        .name{
+            font-size: 17px;
         }
         #row .img{
             width: 70px; height: 70px; margin: 10px 20px;
-        }
-
-        .name{
-            font-size: 18px;
         }
     </style>
 </head>
@@ -66,7 +70,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul  class="nav navbar-nav navbar-right">
                     <li><a>Xin chào <?php echo $_SESSION['username']; ?></a></li>
-                    <li><a href="index.php">Trang chủ</a></li>
+                    <li><a  href="index.php">Trang chủ</a></li>
                     <li><a  href="post.php">Tạo bài viết</a></li>
                     <li><a  href="logout.php">Đăng xuất</a></li>
                 </ul>
@@ -77,68 +81,79 @@
         </div>
     </nav>
     <div>
-    </div>
-
-    <br><br><br><br><br>
-
+    </div><br><br><br><br><br>
     <!--Container-->
     <div id="container" >
-        <form action="post_process.php" method="POST" enctype="multipart/form-data">
+        <form action="edit_process.php?id=<?=$r['post_id']?>" method="POST" enctype="multipart/form-data">
             <div id="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="panel panel-primary">
-                        <div class="panel-heading" ><b>TẠO BÀI VIẾT MỚI</b><button  class="btn btn-info" name="btn-upload" type="submit" >Đăng bài</button></div>
-                            <?php
-                            if(isset($_SESSION['username'])) {
-                                $sql = mysqli_query($con, "SELECT * FROM users");
-                                $r = mysqli_fetch_array($sql);
-                            }
-                            ?>
+                        <div class="panel-heading" ><b>Chỉnh sửa bài viết</b><button class="btn btn-info" name="btn-edit" type="submit">Cập nhật</button></div>
                         <table>
                             <tr>
+                                <?php
+                                $get_user = mysqli_query($con, "SELECT * FROM users WHERE username = '".$_SESSION['username']."' ") or die ("Lỗi user");
+                                $get = mysqli_fetch_array($get_user);
+                                ?>
                                 <th rowspan="2">
-                                    <img class ="img" src="<?=$r['avatar']?>" alt="Avatar" >
+                                    <img class="img" src="<?=$get['avatar']?>" alt="Avatar">
+
                                 </th>
                                 <td>
-                                    <b class="name"><?=$r['fullname']?></b>
+                                    <b class="name"><?=$get['fullname']?></b>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="btn-group" >
+                                    <div class="btn-group">
                                         <select class="form-control" name="is_private">
-                                            <option selected value="0">Công khai</option>
-                                            <option value="1">Riêng tư</option>
+                                                <option value="<?php echo $r['is_private']; ?>">
+                                                    <?php if($r['is_private'] == 0){ echo "Công khai"; ?>
+                                                        <option value="1">Riêng tư</option>
+                                                    <?php
+                                                        }else{ echo "Riêng tư"; ?>
+                                                        <option value="0">Công khai</option>
+                                                    <?php }?>
+                                                </option>
                                         </select>
                                     </div>
                                 </td>
                             </tr>
                         </table>
                         <table class="table" >
-                            <div class="callout callout-info" >
+                            <div class="callout callout-info">
                                 <div class="col-sm-12">
                                     <dl>
                                         <dd>
-                                            <input type="text" class="form-control" name="title" placeholder="Nhập tiêu đề bài viết" required>
+                                            <input type="text" class="form-control" name="title" value="<?=$r['title'];?>">
                                         </dd>
                                     </dl>
                                     <dl>
                                         <dd>
-                                            <textarea class="form-control" rows="7" name="content" placeholder="Bạn đang muốn chia sẻ những gì?" required></textarea>
+                                            <textarea class="form-control" rows="7" name="content" ><?php echo $r['content'];?></textarea>
                                         </dd>
                                     </dl>
                                     <dl>
-                                        <dd>
-                                            <label for ="fileSelect"> Tải hình ảnh: </label>
+                                        <dd class="pic">
+                                            <!--                                            <input type="file" id="file-upload" name = "image_url" />-->
+                                            <!--                                            <form action="upload.php" method="post" enctype="multipart/form-data">-->
+                                            <label for ="fileSelect"> Ảnh bài viết: </label>
+                                            <img src="./assets/css/img/<?=$r["image_url"]?>" alt='Ảnh bài viết'>
                                             <input type="file" name="image_url" id = "fileSelect">
                                             <p> <strong> Lưu ý: </strong> Chỉ cho phép các định dạng .jpg, .jpeg với kích thước tối đa là 5 MB. </p>
+                                            <!--                                            </form>-->
                                         </dd>
                                     </dl>
                                 </div>
                             </div>
-                        </table>
 
-                        <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
-                        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
 </body>
 </html>
