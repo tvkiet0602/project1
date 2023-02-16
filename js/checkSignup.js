@@ -32,17 +32,26 @@
     }
     function checkEmpty(listInput){
         let isEmpty = false;
-        // if(avatar.files.length == 0){
-        //     avatar.querySelector('span').innerText = 'Chọn ảnh đại diện!'        // console.log(avt.files[0].size)
-        // }
+
         listInput.forEach(input => {
-            input.value = input.value.trim()
-            if(!input.value){
-                isEmpty = true;
-                showCheck(input, 'Không được bỏ trống!')
-            }else{
-                showSuccess(input)
-            }
+            // if (input.hasOwnProperty("files")){
+            //     if(input.files[0].length == 0){
+            //         isEmpty = true;
+            //         showCheck(input, 'Khoong de trong anh dai dien')
+            //     }
+            //
+            // }
+            // else{
+
+                if(input.value.length == 0){
+                    isEmpty = true;
+                    showCheck(input, 'Không được bỏ trống!')
+                }else{
+                    showSuccess(input)
+                }
+            // }
+
+
         });
         return isEmpty;
     }
@@ -67,24 +76,16 @@
         }
         return false
     }
-    // function checkAvatar(){
-    //     if(avatar.files.length == 0){
-    //         showCheck(avatar, 'Không được bỏ trống ảnh đại diện!')
-    //         // return true
-    //         console.log(avatar.files[0].size)
-    //     }
-    //     // return false
-    // }
     form.addEventListener('submit', function (e){
         e.preventDefault()
 
         let isEmpty = checkEmpty([fullname, username, password, pswrepeat, email, avatar])
-        // let isEmailError = checkEmail(email)
+        let isEmailError = checkEmail(email)
         let isUernameLenghth = checkLength(username, 3, 12)
         let isPasswordLenghth = checkLength(password, 6, 32)
         let ischeckMatchPass = checkMatchPass(password, pswrepeat)
-        console.log("done")
-        // let ischeckAvatar = checkAvatar()
+
+
 
         // if(isEmpty || isEmailError || isUernameLenghth || isPasswordLenghth || ischeckMatchPass){
         // }
