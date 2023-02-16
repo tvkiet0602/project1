@@ -1,16 +1,15 @@
-
 <?php
     session_start();
     header("Content-Type: text/html; charset-UTF-8");
     include 'connect.php';
     if(isset($_POST['submit'])){
-    $username = $_POST['username'];
-    $password = md5($_POST['password']);
-//    if ($username == '' || $password == ''){
-//        echo("Vui lòng nhập đẩy đủ thông tin tài khoản và mật khẩu!<br /> <a href='javascript: history.go(-1)'>Trở lại</a>");
-//        exit;
-//    }
-//    else{
+        $username = $_POST['username'];
+        $password = md5($_POST['password']);
+    //    if ($username == '' || $password == ''){
+    //        echo("Vui lòng nhập đẩy đủ thông tin tài khoản và mật khẩu!<br /> <a href='javascript: history.go(-1)'>Trở lại</a>");
+    //        exit;
+    //    }
+    //    else{
         $sql = "select * from users where username='$username' and password = '$password' ";
         $result = mysqli_query($con, $sql);
         $num_rows = mysqli_num_rows($result);
@@ -25,8 +24,7 @@
                 $_SESSION['user_id'] = $result['user_id'];
                 header('location: ./index.php');
         }
-
-}
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,17 +48,11 @@
         body{
             background: cornsilk;
         }
-        #login i.fas{position: relative; left:-30px;cursor: pointer;transform: rotate(180deg);
-        }
-        .log span{
-            color: #e74c3c;
-            float: left;
-            margin-left: 20px;
-        }
+
     </style>
 </head>
 <body>
-    <form method="POST" action="./login.php" >
+    <form method="POST" >
         <div id="login">
             <div class="email-pwd">
                 <h1>ĐĂNG NHẬP</h1><br>
@@ -68,7 +60,7 @@
                 <div class="log">
                     <input type="text"   name="username"  placeholder="Tên tài khoản" id="username"  autofocus/ ><br>
                     <span></span>
-                    <input type="password"  name="password" id="password" placeholder="Mật khẩu" minlength="4" maxlength="32" onkeyup="log()">
+                    <input type="password"  name="password" id="password" placeholder="Mật khẩu" minlength="4" maxlength="32"">
                     <span></span>
 
                 </div>
@@ -77,7 +69,7 @@
             </div>
         </div>
     </form>
-    <script src='./js/checkLogin.js'></script>
+<!--    <script src='./js/checkLogin.js'></script>-->
     <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 </body>

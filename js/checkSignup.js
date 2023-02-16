@@ -67,23 +67,24 @@
         }
         return false
     }
-    function checkAvatar(){
-        if(avatar.files.length == 0){
-            showCheck(avatar, 'Không được bỏ trống ảnh đại diện!')
-            // return true
-            console.log(avatart.files[0].size)
-        }
-        // return false
-    }
+    // function checkAvatar(){
+    //     if(avatar.files.length == 0){
+    //         showCheck(avatar, 'Không được bỏ trống ảnh đại diện!')
+    //         // return true
+    //         console.log(avatar.files[0].size)
+    //     }
+    //     // return false
+    // }
     form.addEventListener('submit', function (e){
         e.preventDefault()
 
-        let isEmpty = checkEmpty([fullname, username, password, pswrepeat, email])
-        let isEmailError = checkEmail(email)
+        let isEmpty = checkEmpty([fullname, username, password, pswrepeat, email, avatar])
+        // let isEmailError = checkEmail(email)
         let isUernameLenghth = checkLength(username, 3, 12)
         let isPasswordLenghth = checkLength(password, 6, 32)
         let ischeckMatchPass = checkMatchPass(password, pswrepeat)
-        let ischeckAvatar = checkAvatar()
+        console.log("done")
+        // let ischeckAvatar = checkAvatar()
 
         // if(isEmpty || isEmailError || isUernameLenghth || isPasswordLenghth || ischeckMatchPass){
         // }

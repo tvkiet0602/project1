@@ -34,7 +34,7 @@ function checkEmptyLogin(listInput){
 form.addEventListener('submit', function (e){
     e.preventDefault()
 
-    let isEmpty = checkEmptyLogin([username, password])
+    let isEmpty = checkEmptyLogin([password, username])
     // let ischeckMatchPass = checkMatchPass(password, pswrepeat)
 
 

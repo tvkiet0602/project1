@@ -3,20 +3,21 @@
 }
 
 @media (max-width: 739px) {
+    /*ĐĂNG NHẬP*/
     #login{
-        padding: 50px 150px;
-        margin: 30px 50px;
+        width: 80%;
+        margin-left: 40px;
+        margin-top: 200px;
     }
-    #login .email-pwd{
-        text-align: center;
-        padding: 0px;
-        margin: 0px;
+
+    /*ĐĂNG KÝ*/
+    #register{
+        width: 80%;
+        margin-left: 40px;
+        margin-top: 50px;
     }
-    #login h1{
-        margin: 0px;
-        text-align: center;
-        width: 100%;
-    }
+
+    /*INDEX*/
     #header nav li a{
         float: right;
     }
@@ -24,4 +25,37 @@
         width: 100%;
         margin-left: 10px;
     }
+    #row .leftcolumn .card{
+        width: auto;
+        float: left;
+        margin: 470px 0px 0px 0px;
+        position: absolute;
+    }
+    #row .leftcolumn img{
+        display: none;
+    }
+    .leftcolumn .card .title-post{
+        position: relative;
+        margin-bottom: 20px;
+    }
+    .leftcolumn .card .hr_details{
+        margin-bottom: 70px;
+    }
+    #row button{
+        text-align: center;
+        margin: 10px 0px 30px 0px;
+    }
+    #row .rightcolumn{
+        width: 100%;
+        margin-top: 100px;
+        overflow: auto;
+        height: 350px;
+    }
+
+    /*Detail*/
+    #row #comback{
+        background-color: #0f0f0f;
+
+    }
+
 }

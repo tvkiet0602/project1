@@ -29,7 +29,7 @@
             float: left;
             margin-left: 40px;
         }
-        #dangky .sub:hover{
+        #register .sub:hover{
             background-color: #3c763d;
         }
     </style>
@@ -69,11 +69,11 @@
 ////            } else {
 ?>
 
-<form  method="POST" name="myForm" enctype="multipart/form-data" >
-    <div id="dangky">
+<form  method="POST" name="myForm" enctype="multipart/form-data" action="signup.php ">
+    <div id="register">
         <div>
             <h1>ĐĂNG KÝ</h1><br>
-            <h5><i>Vui lòng nhập vào biểu mẫu bên dưới để đăng ký tài khoản</i></h5>
+            <h5><i>Vui lòng nhập vào biểu mẫu bên dưới để đăng ký</i></h5>
             <div class="signup">
                 <div class="js_sign">
                     <span></span>
