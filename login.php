@@ -6,8 +6,6 @@ include 'connect.php';
 if(isset($_POST['submit'])){
     $username = $_POST['username'];
     $password = md5($_POST['password']);
-//      $password = $_POST['password'];
-
     if ($username == '' || $password == ''){
         echo("Vui lòng nhập đẩy đủ thông tin tài khoản và mật khẩu!<br /> <a href='javascript: history.go(-1)'>Trở lại</a>");
         exit;
