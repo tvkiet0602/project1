@@ -154,3 +154,7 @@ html{
     font-size: 20px;
 }
 
+#container #row .panel-heading{
+    text-align: left; height: 50px; font-size: 20px;
+}
+

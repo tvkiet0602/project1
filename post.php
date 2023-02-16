@@ -59,27 +59,21 @@
 <!--Header-->
 <div id="header">
     <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="myblog.php">MyBlog</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul  class="nav navbar-nav navbar-right">
-                    <li><a>Xin chào <?php echo $_SESSION['username']; ?></a></li>
-                    <li><a href="index.php">Trang chủ</a></li>
-                    <li><a  href="post.php">Tạo bài viết</a></li>
-                    <li><a  href="logout.php">Đăng xuất</a></li>
-                </ul>
-                <form class="navbar-form navbar-right">
-                    <input type="text" class="form-control" placeholder="Search...">
+        <a class="navbar-brand" href="myblog.php">MyBlog</a>
+        <ul  class="nav navbar-nav navbar-right">
+            <li>
+                <form class="navbar-form">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm...">
                 </form>
-            </div>
-        </div>
-    </nav>
-    <div>
-    </div>
+            </li>
+            <li><a>Xin chào <?php echo $_SESSION['username']; ?></a></li>
+            <li><a href="index.php">Trang chủ</a></li>
+            <li><a  href="post.php">Tạo bài viết</a></li>
+            <li><a  href="logout.php">Đăng xuất &nbsp;</a></li>
 
-    <br><br><br><br><br>
+        </ul>
+    </nav>
+</div><br><br><br>
 
     <!--Container-->
     <div id="container" >

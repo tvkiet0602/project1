@@ -20,10 +20,15 @@
     /*INDEX*/
     #header nav li a{
         float: right;
+        font-size: 13px;
+
     }
-    #header .navbar-right{
-        width: 100%;
-        margin-left: 10px;
+    #header .navbar-form{
+        width: 90%;
+        margin-left: 30px;
+    }
+    #header .navbar-brand{
+        margin-left: 40%;
     }
     #row .leftcolumn .card{
         width: auto;
@@ -58,4 +63,22 @@
 
     }
 
+    /*Edit_posst*/
+
+    #container .panel-heading button{
+        height: 30px; font-size: 15px;
+        padding-bottom: 30px;
+        margin:     0px;
+    }
+    #container{
+        margin-top: 130px;
+    }
+    #container option{
+        font-size: 12px;
+    }
+
+    /*Myblog*/
+    #row .leftcolumn .myblog{
+
+    }
 }

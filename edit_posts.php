@@ -27,8 +27,8 @@
             background: rgba(199, 199, 199, 0.418);
         }
         #row img{
-            width: 50px;
-            height: 40px;
+            width: 190px;
+            height: 150px;
         }
         #row p{
             font-size:medium;
@@ -42,9 +42,7 @@
         #row .col-sm-2{
             width: 20em;
         }
-        #container .panel-heading{
-            text-align: left; height: 50px; font-size: 20px;
-        }
+
         #row .btn-info{
             float: right;
         }
@@ -61,27 +59,23 @@
 </head>
 <body>
 <!--Header-->
-<div id="header">
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="myblog.php">MyBlog</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul  class="nav navbar-nav navbar-right">
-                    <li><a>Xin chào <?php echo $_SESSION['username']; ?></a></li>
-                    <li><a  href="index.php">Trang chủ</a></li>
-                    <li><a  href="post.php">Tạo bài viết</a></li>
-                    <li><a  href="logout.php">Đăng xuất</a></li>
-                </ul>
-                <form class="navbar-form navbar-right">
-                    <input type="text" class="form-control" placeholder="Search...">
-                </form>
-            </div>
-        </div>
-    </nav>
-    <div>
-    </div><br><br><br><br><br>
+    <div id="header">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <a class="navbar-brand" href="myblog.php">MyBlog</a>
+            <ul  class="nav navbar-nav navbar-right">
+                <li>
+                    <form class="navbar-form">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                    </form>
+                </li>
+                <li><a>Xin chào <?php echo $_SESSION['username']; ?></a></li>
+                <li><a href="index.php">Trang chủ</a></li>
+                <li><a  href="post.php">Tạo bài viết</a></li>
+                <li><a  href="logout.php">Đăng xuất &nbsp;</a></li>
+
+            </ul>
+        </nav>
+    </div><br><br><br>
     <!--Container-->
     <div id="container" >
         <form action="edit_process.php?id=<?=$r['post_id']?>" method="POST" enctype="multipart/form-data">
@@ -137,7 +131,7 @@
                                         <dd class="pic">
                                             <!--                                            <input type="file" id="file-upload" name = "image_url" />-->
                                             <!--                                            <form action="upload.php" method="post" enctype="multipart/form-data">-->
-                                            <label for ="fileSelect"> Ảnh bài viết: </label>
+                                            <label for ="fileSelect"> Ảnh bài viết: </label><br>
                                             <img src="./assets/css/img/<?=$r["image_url"]?>" alt='Ảnh bài viết'>
                                             <input type="file" name="image_url" id = "fileSelect">
                                             <p> <strong> Lưu ý: </strong> Chỉ cho phép các định dạng .jpg, .jpeg với kích thước tối đa là 5 MB. </p>
