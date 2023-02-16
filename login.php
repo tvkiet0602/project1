@@ -1,17 +1,16 @@
 
 <?php
-session_start();
-header("Content-Type: text/html; charset-UTF-8");
-include 'connect.php';
-if(isset($_POST['submit'])){
+    session_start();
+    header("Content-Type: text/html; charset-UTF-8");
+    include 'connect.php';
+    if(isset($_POST['submit'])){
     $username = $_POST['username'];
     $password = md5($_POST['password']);
-    if ($username == '' || $password == ''){
-        echo("Vui lòng nhập đẩy đủ thông tin tài khoản và mật khẩu!<br /> <a href='javascript: history.go(-1)'>Trở lại</a>");
-        exit;
-    }
-
-    else{
+//    if ($username == '' || $password == ''){
+//        echo("Vui lòng nhập đẩy đủ thông tin tài khoản và mật khẩu!<br /> <a href='javascript: history.go(-1)'>Trở lại</a>");
+//        exit;
+//    }
+//    else{
         $sql = "select * from users where username='$username' and password = '$password' ";
         $result = mysqli_query($con, $sql);
         $num_rows = mysqli_num_rows($result);
@@ -19,15 +18,14 @@ if(isset($_POST['submit'])){
         if($num_rows == 0){
              echo ("Username hoặc Password không đúng, vui lòng nhập lại! <br /> <a href='javascript: history.go(-1)'>Trở lại</a>");
              exit;
-//            $alert = "Username hoặc Password không đúng, vui lòng nhập lại!";
         }
         else{
             $result = mysqli_fetch_array($result);
                 $_SESSION['username'] = $username;
                 $_SESSION['user_id'] = $result['user_id'];
-                header('location: /index.php');
+                header('location: ./index.php');
         }
-    }
+
 }
 ?>
 <!DOCTYPE html>
@@ -54,6 +52,11 @@ if(isset($_POST['submit'])){
         }
         #login i.fas{position: relative; left:-30px;cursor: pointer;transform: rotate(180deg);
         }
+        .log span{
+            color: #e74c3c;
+            float: left;
+            margin-left: 20px;
+        }
     </style>
 </head>
 <body>
@@ -64,7 +67,10 @@ if(isset($_POST['submit'])){
                 <h5><i>Xin vui lòng nhập đầy đủ thông tin tài khoản</i></h5>
                 <div class="log">
                     <input type="text"   name="username"  placeholder="Tên tài khoản" id="username"  autofocus/ ><br>
+                    <span></span>
                     <input type="password"  name="password" id="password" placeholder="Mật khẩu" minlength="4" maxlength="32" onkeyup="log()">
+                    <span></span>
+
                 </div>
                 <input id="sub" class="sub" type="submit" name="submit" value="Đăng nhập"><br><br>
                 <a href="signup.php">Đăng ký tài khoản</a>
