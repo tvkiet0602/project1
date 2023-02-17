@@ -47,7 +47,7 @@
             float: right;
         }
         #row .img{
-            width: 70px; height: 70px; margin: 10px 20px;
+            width: 70px; height: 70px; margin: 0px 20px 20px 20px;
         }
 
         .name{
@@ -91,7 +91,8 @@
                         <table>
                             <tr>
                                 <th rowspan="2">
-                                    <img class ="img" src="<?=$r['avatar']?>" alt="Avatar" >
+
+                                    <img class ="img" src="./assets/css/avatar/<?=$r['avatar']?>" alt="Avatar" >
                                 </th>
                                 <td>
                                     <b class="name"><?=$r['fullname']?></b>
@@ -103,7 +104,7 @@
                                         <select class="form-control" name="is_private">
                                             <option selected value="0">Công khai</option>
                                             <option value="1">Riêng tư</option>
-                                        </select>
+                                        </select><br>
                                     </div>
                                 </td>
                             </tr>

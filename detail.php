@@ -7,7 +7,7 @@
     include 'connect.php';
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,70 +23,7 @@
             background: rgba(199, 199, 199, 0.418);
             font-family: "Times New Roman";
         }
-        /*#row img{*/
-        /*    width: 40px;*/
-        /*    height: 40px;*/
-        /*}*/
-        /*#row p{*/
-        /*    font-size:medium;*/
-        /*}*/
-        #row .container .btn-default{
-            text-decoration: none;
-            padding: 4px;
-            color: black;
-        }
-        #row .col-sm-2{
-            width: 20em;
-        }
-        .col-xs-11{
-            width: 100%; margin-left: 40px;
-        }
-        #comeback{
-            font-size: 16px; margin: 20px 0px 30px 70px;
-        }
-        .title{
-            font-size: 30px; display: inline; float: left;
-        }
-        #edit{
-            font-size: 17px;
-            float:right;
-        }
-        #row .img{
-            width: 500px; height: 300px; margin-right: auto; margin-left: auto; display: block;
-        }
-        #row .content{
-            font-size: 20px; text-align: justify;
-        }
-        .hr1{
-            height: 20px; width: 100%; border: 0; box-shadow: 0 10px 10px -10px #8c8b8b inset; margin: 0px;
-        }
-        #cmt h4{
-            margin: 0px; color: #007bff;
-        }
-        .input-group-btn input{
-            height: 74px; font-size: 18px;
-        }
-        .form-cmt{
-            width: 100px;
-        }
-        #row .avt-cmt-own{
-            width: 70px; height: 70px; margin: 20px 0px 20px 0px;
-        }
-        #row .form-control textarea{
-            margin-left: 10px; width: 100%;
-        }
-        .hr2{
-            height: 6px;background-image: radial-gradient(closest-side,hsla(0, 0%, 50%, 1.0),hsla(0, 0%, 50%, 0) 100%);position: relative;
-        }
-        #row .img-rounded{
-            width: 70px; height: 70px; margin-bottom:  20px;
-        }
-        .section-cmt{
-            margin-left: 20px;
-        }
-        .section-fullname{
-            font-weight: bold; margin-left: 20px; font-size: 17px; margin-top: 0px;
-        }
+
     </style>
 </head>
 <body>
@@ -100,7 +37,7 @@
                     <input type="text" class="form-control" placeholder="Tìm kiếm...">
                 </form>
             </li>
-            <li><a>Xin chào <?php echo $_SESSION['username']; ?></a></li>
+            <li><a>Xin chào <?php echo $_SESSION['username']; ?> </a></li>
             <li><a href="index.php">Trang chủ</a></li>
             <li><a  href="post.php">Tạo bài viết</a></li>
             <li><a  href="logout.php">Đăng xuất &nbsp;</a></li>
@@ -109,7 +46,7 @@
     </nav>
 </div><br><br><br>
     <!--Container-->
-    <div id="row">
+    <div id="row_detail">
         <div class="col-md-7 col-md-offset-1">
             <a id = "comeback" class='btn btn-default' href='javascript: history.go(-1)' >&nbsp; &laquo; Quay lại &nbsp;&nbsp; </a>
             <div class="container">
@@ -162,7 +99,6 @@
                                                  <p class='content'>".$r["content"]."</p>
                                               </td>
                                         </tr>";
-
                                         }
                                     }
                                 }
@@ -174,13 +110,12 @@
                             <?php
                                 $sql = mysqli_query ($con, "SELECT * FROM users WHERE username = '".$_SESSION['username']."'");
                                 $r = mysqli_fetch_array($sql);
-
                             ?>
                             <div>
                                 <table  width="100%" >
                                     <tr>
                                         <td class="form-cmt">
-                                            <img class="avt-cmt-own" src="<?=$r['avatar']?>" class="img-rounded">
+                                            <img class="avt-cmt-own" src="./assets/css/avatar/<?=$r['avatar']?>" class="img-rounded">
                                         </td>
                                         <td>
                                             <div class="input-group">
@@ -205,7 +140,7 @@
                                     <div>
                                         <tr>
                                             <td>
-                                                <img src="<?=$r['avatar']?>" class="img-rounded">
+                                                <img src="./assets/css/avatar/<?=$r['avatar']?>" class="img-rounded">
                                             </td>
                                             <td>
                                                 <section class="section-fullname"><?= $r['fullname']?></section>

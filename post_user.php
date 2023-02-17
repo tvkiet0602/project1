@@ -18,6 +18,7 @@ include 'connect.php';
     <link rel="stylesheet" href="./css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
     <link rel="stylesheet" href="./assets/css/icon/themify-icons-font/themify-icons/themify-icons.css">
     <style>
         #row table{
@@ -37,45 +38,29 @@ include 'connect.php';
             padding: 10px;
             background: #e9d8f4;
         }
-        #row .card{
-            margin: 0px 150px 0px 150px;
-        }
-        #row .title{
-            font-size: 20px;
-        }
-
-
-
-
     </style>
 </head>
 <body>
 <!--Header-->
 <div id="header">
     <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="myblog.php">MyBlog</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul  class="nav navbar-nav navbar-right">
-                    <li><a>Xin chào <?php echo $_SESSION['username']; ?></a></li>
-                    <li><a href="index.php">Trang chủ</a></li>
-                    <li><a href="post.php">Tạo bài viết</a></li>
-                    <li><a href="logout.php">Đăng xuất</a></li>
-                </ul>
-                <form class="navbar-form navbar-right">
-                    <input type="text" class="form-control" placeholder="Search...">
+        <a class="navbar-brand" href="myblog.php">MyBlog</a>
+        <ul  class="nav navbar-nav navbar-right">
+            <li>
+                <form class="navbar-form">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm...">
                 </form>
-            </div>
-        </div>
-    </nav>
-    <div>
-    </div>
+            </li>
+            <li><a>Xin chào <?php echo $_SESSION['username']; ?></a></li>
+            <li><a href="index.php">Trang chủ</a></li>
+            <li><a  href="post.php">Tạo bài viết</a></li>
+            <li><a  href="logout.php">Đăng xuất &nbsp;</a></li>
 
-    <br><br><br>
+        </ul>
+    </nav>
+</div><br><br><br>
     <!--Container-->
-    <div id="row">
+    <div id="row_puser">
         <div class="leftcolumn">
             <div class="card" >
                     <?php
@@ -99,12 +84,14 @@ include 'connect.php';
                                       <img src='./assets/css/img/".$r["image_url"]."' alt='Ảnh bài viết' vspace='20px' hspace='30px'>
                                   </td>
                                    <td class='title'>
-                                      <p><b>".$r["title"]."</b></p><br>
+                                   <br><br>
+                                      <p><b>".$r["title"]."</b></p>
                                   </td>
                               </tr>
                               <tr>
                                    <td >
-                                      <h5><em>Ngày đăng: ".$r["post_date"]." --- Người tạo: ".$r["fullname"]."</em></h5><em>
+                                      <h5><em>Ngày đăng: ".$r["post_date"]." </em></h5>
+                                          <h5><em>Người tạo: ".$r["fullname"]."</em></h5><em>
                                    </td>
                               </tr>
                               <tr>
@@ -128,7 +115,6 @@ include 'connect.php';
                     <div class="pagination">
                         <?php
                         $id = $_SESSION['user_id'];
-                        echo "<a href='#' >&laquo;</a>";
                         for($list=1; $list<=$pages; $list++){
                             if($list != $current_page){
                                 ?>
@@ -139,7 +125,6 @@ include 'connect.php';
                                 echo "<strong class='btn btn-primary '>".$list."</strong>";
                             }
                         }
-                        echo"<a href='#'>&raquo;</a>";
                         ?>
 
                     </div>

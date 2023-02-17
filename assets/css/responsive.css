@@ -21,7 +21,6 @@
     #header nav li a{
         float: right;
         font-size: 13px;
-
     }
     #header .navbar-form{
         width: 90%;
@@ -29,6 +28,9 @@
     }
     #header .navbar-brand{
         margin-left: 40%;
+    }
+    #header .navbar-right{
+        padding-right: 10px;
     }
     #row .leftcolumn .card{
         width: auto;
@@ -48,7 +50,7 @@
     }
     #row button{
         text-align: center;
-        margin: 10px 0px 30px 0px;
+        margin: 10px 0px 0px 0px;
     }
     #row .rightcolumn{
         width: 100%;
@@ -56,15 +58,36 @@
         overflow: auto;
         height: 350px;
     }
+    #row .title-post{
+        /*font-size: 30px;*/
+        margin-top: 10px;
+    }
 
     /*Detail*/
-    #row #comback{
-        background-color: #0f0f0f;
-
+    #row_detail{
+        margin-top: 100px;
+        float: left;
+        /*background-color: #0f0f0f;*/
+        padding: 0px;
+    }
+    #comeback{
+        margin-left: 0px;
+        margin-bottom: 5px;
+    }
+    #row_detail .col-xs-11{
+        margin-left: 0px;
+        padding: 0px;
+    }
+    #row_detail .container{
+        padding: 0px;
+        float: left;
+    }
+    #row_detail .img{
+        width: 300px;
+        height: 200px;
     }
 
     /*Edit_posst*/
-
     #container .panel-heading button{
         height: 30px; font-size: 15px;
         padding-bottom: 30px;
@@ -78,7 +101,53 @@
     }
 
     /*Myblog*/
-    #row .leftcolumn .myblog{
+    #row_myblog .myblog{
+        width: 300px;
+        position: relative;
+        margin-top: 100px;
+        margin-left: 0px;
+    }
+    #row_myblog .card{
+        width: 90%;
+        margin-left: 20px;
+    }
+    #row_myblog .leftcolumn{
+        margin-left: 0px;
+        width: 100%;
+    }
+    #row_myblog img{
+        display: none;
+    }
+    #row_myblog table td{
+        width: auto;
+    }
+    #row_myblog button{
+        margin-left: 0px;
+    }
+
+    /*Post_user*/
+    #row_puser{
+        width: 360px;
+        position: relative;
+        margin-top: 100px;
+        margin-left: 5px;
+    }
+    #row_puser .card{
+        width: 90%;
+        margin: 0px 0px 0px 20px;
+    }
+    #row_puser .leftcolumn{
+        margin-left: 0px;
+        width: 100%;
+    }
+    #row_puser img{
+        display: none;
+    }
+    #row_puser button{
+        margin-left: 0px;
+    }
+    #row_puser .pagination{
+        font-size:10px;
 
     }
 }

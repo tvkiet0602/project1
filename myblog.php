@@ -24,12 +24,11 @@ include 'connect.php';
         #row table{
             margin-top: 20px;
         }
-        .leftcolumn {
-            /*float: left;*/
-            margin-left: 200px;
-            width: 70%;
-            background-color: #baa1cc;
-        }
+        /*.leftcolumn {*/
+        /*    margin-left: 200px;*/
+        /*    width: 70%;*/
+        /*    background-color: #baa1cc;*/
+        /*}*/
         * {
             box-sizing: border-box;
         }
@@ -37,12 +36,6 @@ include 'connect.php';
             font-family: Arial;
             padding: 10px;
             background: #e9d8f4;
-        }
-        #row .card{
-            margin: 0px 150px 0px 150px;
-        }
-        #row .title{
-            font-size: 20px;
         }
     </style>
 </head>
@@ -66,12 +59,10 @@ include 'connect.php';
     </nav>
 </div><br><br><br>
     <!--Container-->
-    <div id="row">
+    <div id="row_myblog">
         <div class="leftcolumn">
             <div class="card" >
                 <div class="myblog">
-
-
                     <?php
                     $number = !empty($_GET['per_page'])?$_GET['per_page']:6;
                     $current_page = !empty($_GET['page'])?$_GET['page']:1; //Trang hiện tại
@@ -83,7 +74,7 @@ include 'connect.php';
                     $r = mysqli_fetch_array($result);
                     ?>
                     <button type="button" class="btn btn-primary">Blog cá nhân </button>
-                    <table>
+                    <table >
                         <?php
                         while($r = mysqli_fetch_array($result)){
                             if($r['user_id'] == $_SESSION['user_id']){
@@ -93,12 +84,14 @@ include 'connect.php';
                                           <img src='./assets/css/img/".$r["image_url"]."' alt='Ảnh bài viết' vspace='20px' hspace='30px'>
                                       </td>
                                        <td class='title'>
-                                          <p><b>".$r["title"]."</b></p><br>
+                                       <br>
+                                          <p><b>".$r["title"]."</b></p>
                                       </td>
                                   </tr>
                                   <tr>
                                        <td >
-                                          <h5><em>Ngày đăng: ".$r["post_date"]." --- Người tạo: ".$r["fullname"]."</em></h5><em>
+                                          <h5><em>Ngày đăng: ".$r["post_date"]." </em></h5>
+                                          <h5><em>Người tạo: ".$r["fullname"]."</em></h5><em>
                                        </td>
                                   </tr>
                                   <tr>
@@ -122,7 +115,6 @@ include 'connect.php';
                         <div class="pagination">
                             <?php
                             $id = $_SESSION['user_id'];
-                            echo "<a href='#' >&laquo;</a>";
                             for($list=1; $list<=$pages; $list++){
                                 if($list != $current_page){
                                     ?>
@@ -133,7 +125,6 @@ include 'connect.php';
                                     echo "<strong class='btn btn-primary '>".$list."</strong>";
                                 }
                             }
-                            echo"<a href='#'>&raquo;</a>";
                             ?>
                         </div>
                     </div>
