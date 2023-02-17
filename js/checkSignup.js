@@ -4,7 +4,7 @@
     var password = document.querySelector('#password')
     var pswrepeat = document.querySelector('#pswrepeat')
     var email = document.querySelector('#email')
-    var avatar = document.querySelector('#avatar')
+    // var avatar = document.querySelector('#avatar')
     var form = document.querySelector('form')
     function showCheck(input, message){
         let parent = input.parentElement;
@@ -79,17 +79,13 @@
     form.addEventListener('submit', function (e){
         e.preventDefault()
 
-        let isEmpty = checkEmpty([fullname, username, password, pswrepeat, email, avatar])
+
+        let isEmpty = checkEmpty([fullname, username, password, pswrepeat, email])
         let isEmailError = checkEmail(email)
         let isUernameLenghth = checkLength(username, 3, 12)
         let isPasswordLenghth = checkLength(password, 6, 32)
         let ischeckMatchPass = checkMatchPass(password, pswrepeat)
 
 
-
-        // if(isEmpty || isEmailError || isUernameLenghth || isPasswordLenghth || ischeckMatchPass){
-        // }
-        // else{
-        //     console.log(username)
-        // }
     })
+

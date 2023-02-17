@@ -92,10 +92,12 @@ html{
     width: 85%;
 }
 
+
 /*TRANG CHỦ*/
 #row img{
-    width: 200px;
+    width: 220px;
     height: 150px;
+    padding-top: 10px;
 }
 #row p{
     font-size:medium;
@@ -154,3 +156,112 @@ html{
     font-size: 20px;
 }
 
+#container #row .panel-heading{
+    text-align: left; height: 50px; font-size: 20px;
+}
+
+#row_detail  .col-xs-11{
+    width: 100%;
+    margin-left: 40px;
+}
+#comeback{
+    font-size: 16px; margin: 20px 0px 30px 70px;
+}
+.title{
+    font-size: 30px; display: inline; float: left;
+}
+#edit{
+    font-size: 17px;
+    float:right;
+}
+#row_detail .img{
+    width: 500px; height: 300px; margin-right: auto; margin-left: auto; display: block;
+}
+#row_detail .content{
+    font-size: 20px; text-align: justify;
+}
+#row_detail .hr1{
+    height: 20px; width: 100%; border: 0; box-shadow: 0 10px 10px -10px #8c8b8b inset; margin: 0px;
+}
+#cmt h4{
+    margin: 0px; color: #007bff;
+}
+.input-group-btn input{
+    height: 74px; font-size: 18px;
+}
+#row_detail .form-cmt{
+    width: 100px;
+}
+#row_detail .avt-cmt-own{
+    width: 70px; height: 70px; margin: 20px 0px 20px 0px;
+}
+#row_detail .form-control textarea{
+    margin-left: 10px; width: 100%;
+}
+#row_detail .hr2{
+    height: 6px;background-image: radial-gradient(closest-side,hsla(0, 0%, 50%, 1.0),hsla(0, 0%, 50%, 0) 100%);position: relative;
+}
+#row_detail .img-rounded{
+    width: 70px; height: 70px; margin-bottom:  20px;
+}
+#row_detail .section-cmt{
+    margin-left: 20px;
+}
+#row_detail .section-fullname{
+    font-weight: bold; margin-left: 20px; font-size: 17px; margin-top: 0px;
+}
+#row_detail .img-rounded{
+    width: 70px; height: 70px; margin-bottom:  20px;
+}
+
+/*Myblog*/
+#row_myblog img{
+    width: 220px;
+    height: 200px;
+}
+#row_myblog p{
+    font-size:medium;
+}
+#row_myblog .card {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    margin: 0px 100px 0px 150px;
+}
+#row_myblog button{
+    margin-left: 30px;
+}
+
+#row_myblog .card{
+    margin: 0px 150px 0px 150px;
+}
+#row_myblog .title{
+    font-size: 20px;
+}
+
+
+/*Post_user*/
+#row_puser p{
+    font-size:medium;
+}
+#row_puser .card {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+}
+#row_puser button{
+    margin-left: 30px;
+}
+
+#row_puser .card{
+    margin: 0px 150px 0px 150px;
+}
+#row_puser .title{
+    font-size: 20px;
+}
+#row_puser img{
+    width: 220px;
+    height: 200px;
+    padding-top: 20px;
+    margin-top: 40px;
+}
