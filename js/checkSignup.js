@@ -32,26 +32,13 @@
     }
     function checkEmpty(listInput){
         let isEmpty = false;
-
         listInput.forEach(input => {
-            // if (input.hasOwnProperty("files")){
-            //     if(input.files[0].length == 0){
-            //         isEmpty = true;
-            //         showCheck(input, 'Khoong de trong anh dai dien')
-            //     }
-            //
-            // }
-            // else{
-
-                if(input.value.length == 0){
-                    isEmpty = true;
-                    showCheck(input, 'Không được bỏ trống!')
-                }else{
-                    showSuccess(input)
-                }
-            // }
-
-
+            if(input.value.length == 0){
+                isEmpty = true;
+                showCheck(input, 'Không được bỏ trống!')
+            }else{
+                showSuccess(input)
+            }
         });
         return isEmpty;
     }
@@ -76,16 +63,16 @@
         }
         return false
     }
-    form.addEventListener('submit', function (e){
-        e.preventDefault()
-
-
+    function check(passInput, rpPassInput){
         let isEmpty = checkEmpty([fullname, username, password, pswrepeat, email])
         let isEmailError = checkEmail(email)
         let isUernameLenghth = checkLength(username, 3, 12)
         let isPasswordLenghth = checkLength(password, 6, 32)
         let ischeckMatchPass = checkMatchPass(password, pswrepeat)
 
-
-    })
+        if(isEmpty || isEmailError || isUernameLenghth || isPasswordLenghth || ischeckMatchPass){
+            return false;
+        }
+        return true;
+    }
 

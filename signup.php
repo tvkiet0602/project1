@@ -69,7 +69,7 @@
 ////            } else {
 ?>
 
-<form  method="POST" name="myForm" enctype="multipart/form-data" action="signup.php ">
+<form  method="POST" name="myForm" enctype="multipart/form-data" action="signup.php" onsubmit="check()">
     <div id="register">
         <div>
             <h1>ĐĂNG KÝ</h1><br>
