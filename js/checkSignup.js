@@ -76,7 +76,7 @@
     //     // return false
     // }
     form.addEventListener('submit', function (e){
-        e.preventDefault()
+        // e.preventDefault()
 
         let isEmpty = checkEmpty([fullname, username, password, pswrepeat, email])
         let isEmailError = checkEmail(email)
@@ -86,11 +86,6 @@
 
         // let ischeckAvatar = checkAvatar()
 
-        if(!isEmpty && !isEmailError && !isUernameLenghth && !isPasswordLenghth && !ischeckMatchPass){
-            alert("Lỗi")
-        }
-        else{
-            alert("ĐÚNG")
-        }
+        e.stopPropagation();
     })
 
