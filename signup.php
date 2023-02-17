@@ -98,7 +98,7 @@
                 <div class="js_sign">
                     <label for="formFile" class="form-label">Chọn ảnh đại diện</label><br>
                     <span></span>
-                    <input type="file" name="avatar" id="avatar" class="form-control"   id = "fileSelect">
+                    <input type="file" name="avatar" id="avatar" class="form-control" >
                 </div>
             </div>
             <input type="submit" class="sub" name="btn-signup"  value="Đăng ký">
