@@ -113,12 +113,9 @@ html{
     padding-left: 20px;
     margin: 0px;
     overflow: auto;
+    max-height: 700px;
 }
 
-/*.rightcolumn .img-circle{*/
-/*    width: 60px;*/
-/*    height: 60px;*/
-/*}*/
 .fakeimg {
     background-color: #baa1cc;
     width: 100%;  padding: 20px;

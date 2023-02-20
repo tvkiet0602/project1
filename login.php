@@ -5,11 +5,6 @@
     if(isset($_POST['submit'])){
         $username = $_POST['username'];
         $password = md5($_POST['password']);
-    //    if ($username == '' || $password == ''){
-    //        echo("Vui lòng nhập đẩy đủ thông tin tài khoản và mật khẩu!<br /> <a href='javascript: history.go(-1)'>Trở lại</a>");
-    //        exit;
-    //    }
-    //    else{
         $sql = "select * from users where username='$username' and password = '$password' ";
         $result = mysqli_query($con, $sql);
         $num_rows = mysqli_num_rows($result);
@@ -58,9 +53,9 @@
                 <h1>ĐĂNG NHẬP</h1><br>
                 <h5><i>Xin vui lòng nhập đầy đủ thông tin tài khoản</i></h5>
                 <div class="log">
-                    <input type="text"   name="username"  placeholder="Tên tài khoản" id="username"  autofocus/ ><br>
+                    <input type="text"   name="username"  placeholder="Tên tài khoản" id="username" required autofocus/ ><br>
                     <span></span>
-                    <input type="password"  name="password" id="password" placeholder="Mật khẩu" minlength="4" maxlength="32"">
+                    <input type="password"  name="password" id="password" placeholder="Mật khẩu" minlength="4" maxlength="32" required>
                     <span></span>
 
                 </div>
