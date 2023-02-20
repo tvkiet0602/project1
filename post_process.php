@@ -2,8 +2,6 @@
     session_start();
     include 'connect.php';
     header("Content-Type: text/html; charset-UTFF-8");
-
-//    $user_id = $_POST['user_id'];
     $title = $_POST['title'];
     $content = $_POST['content'];
     $is_private = $_POST['is_private'];

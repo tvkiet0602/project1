@@ -50,26 +50,14 @@
         $avatar = $_FILES['avatar']['name'];
         $avt_temp = $_FILES['avatar']['name_temp'];
         $result = mysqli_query($con, "INSERT INTO users(fullname, username, password, email, avatar) VALUES ('$fullname', '$username', '$password', '$email',  '$avatar')") or die ("Lỗi");
-        move_uploaded_file($avt_temp, './assets/css/avatar/'.$avatar);
+        move_uploaded_file($avt_temp, './assets/css/avatar/' . $avatar);
         if ($result) {
-//                    window . alert("Đăng ký thành công! Chào mừng bạn đến với Website MyBlog!");
             header("location: ./login.php");
         }
     }
-
-//        }
-//    }//        if ($username == "" || $password == "" || $pswrepeat == "" || $fullname == "" || $email == "" || $avatar == "") {
-////            echo "Bạn vui lòng nhập đầy đủ thông tin";
-////        } else {
-//            // Kiểm tra tài khoản đã tồn tại chưa
-////            $kt = mysqli_query($con, "select * from users where username='$username'");
-////
-////            if (mysqli_num_rows($kt) > 0) {
-////                echo "Tài khoản đã tồn tại";
-////            } else {
 ?>
 
-<form  method="POST" name="myForm" enctype="multipart/form-data" action="signup.php" onsubmit="check()">
+<form  method="POST" name="myForm" enctype="multipart/form-data" action="signup.php"">
     <div id="register">
         <div>
             <h1>ĐĂNG KÝ</h1><br>
@@ -77,28 +65,28 @@
             <div class="signup">
                 <div class="js_sign">
                     <span></span>
-                    <input type="text" name="fullname" id="fullname" class="txt" placeholder="Họ và tên" "><br>
+                    <input type="text" name="fullname" id="fullname" class="txt" placeholder="Họ và tên" required><br>
                 </div>
                 <div class="js_sign">
                     <span></span>
-                    <input type="text" name="username" id="username" placeholder="Tên tài khoản"><br>
+                    <input type="text" name="username" id="username" placeholder="Tên tài khoản" required><br>
                 </div>
                 <div class="js_sign">
                     <span></span>
-                    <input type="password"  name="password" id="password" placeholder="Mật khẩu"><br>
+                    <input type="password"  name="password" id="password" placeholder="Mật khẩu" required><br>
                 </div>
                 <div class="js_sign">
                     <span></span>
-                    <input type="password" id="pswrepeat" placeholder="Nhập lại mật khẩu" name="pswrepeat">
+                    <input type="password" id="pswrepeat" placeholder="Nhập lại mật khẩu" name="pswrepeat" required>
                 </div>
                 <div class="js_sign">
                     <span></span>
-                    <input type="email" id="email" name="email"  placeholder="Email">
+                    <input type="email" id="email" name="email"  placeholder="Email" required>
                 </div>
                 <div class="js_sign">
                     <label for="formFile" class="form-label">Chọn ảnh đại diện</label><br>
                     <span></span>
-                    <input type="file" name="avatar" id="avatar" class="form-control" >
+                    <input type="file" name="avatar" id="avatar" class="form-control" required>
                 </div>
             </div>
             <input type="submit" class="sub" name="btn-signup"  value="Đăng ký">
@@ -106,7 +94,7 @@
     </div>
 </form>
 
-<script src="./js/checkSignup.js"></script>
+<!--<script src="./js/checkSignup.js"></script>-->
 
 <script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="./js/bootstrap.min.js"></script>
